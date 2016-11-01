@@ -40,9 +40,16 @@ namespace bit {
 						
 			}
 
-			void set(const unsigned int x, const unsigned int y) {
+			bool set(const unsigned int x, const unsigned int y) {
 
+				// Check we're in range
+				if (x >= X || y >= Y)
+					return false;
+
+				// If so, set the bit
 				maze[y][x] = '#';
+
+				return true;
 			}
 	};
 }
@@ -70,7 +77,11 @@ int main() {
 			x += 2;
 		}
 
-		maze.set(x, y);
+		// Just out of loop if it cannot be set
+		if(!maze.set(x, y))
+			break;
+
+		// Print it
 		maze.print();
 	}
 
