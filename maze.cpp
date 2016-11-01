@@ -37,7 +37,6 @@ namespace bit {
 
 					cout << '|' << endl;
 				}
-						
 			}
 
 			bool set(const unsigned int x, const unsigned int y) {
@@ -51,6 +50,16 @@ namespace bit {
 
 				return true;
 			}
+
+			unsigned int width() const {
+				
+				return X;
+			}
+
+			unsigned int height() const {
+				
+				return Y;
+			}
 	};
 }
 
@@ -58,31 +67,41 @@ int main() {
 
 	using namespace std;
 
-	// Start position
-	unsigned int x = 0;
-	unsigned int y = 0;
+	// Create bitmap
+	bit::map b(260, 164);
 
-	bit::map maze(260, 164);
+	// Create container of nodes
+	vector<pair<unsigned int, unsigned int>> nodes;
 
-	for (unsigned int i = 0; i < 100; ++i) {
+	// Create some nodes 
+	nodes.push_back(make_pair(b.width() / 2, b.height() / 2));
+	nodes.push_back(make_pair(0, 0));
 
-		// Move to new position
+	// Iterate over nodes
+	for (auto &n : nodes) {
 
-		if (y % 3) {
-			++x;
-			++y;
+		for (unsigned int i = 0; i < 1000; ++i) {
+
+			if (n.second % 6) {
+				++n.first;
+				++n.second;
+			}
+			else {
+				++n.second;
+				n.first += 2;
+			}
+
+			if (!(n.first % 10))
+				n.first -= 5;
+
+			// Move to new position
+			// Jump out of loop if it cannot be set
+			if(!b.set(n.first, n.second))
+				break;
 		}
-		else {
-			++y;
-			x += 2;
-		}
-
-		// Just out of loop if it cannot be set
-		if(!maze.set(x, y))
-			break;
 
 		// Print it
-		maze.print();
+		b.print();
 	}
 
 	return 0;
