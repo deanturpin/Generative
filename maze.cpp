@@ -2,42 +2,64 @@
 #include <iostream>
 #include <vector>
 
+namespace bit {
+
+	using namespace std;
+
+	class map {
+
+		const unsigned int X;
+		const unsigned int Y;
+		vector<char> raster;
+		vector<vector<char>> maze;
+
+		public:
+
+			map(const unsigned int x, const unsigned int y)
+			: X(x)
+			, Y(y)
+			, raster(X, '.')
+			, maze(Y, raster) {}
+
+			void print() const {
+
+				// Jump to top of screen
+				system("tput cup 0 0");
+
+				for (const auto &r : maze) {
+					for (const auto &c : r)
+						cout << c;
+
+					cout << '|' << endl;
+				}
+						
+			}
+
+			void set(const unsigned int x, const unsigned int y) {
+
+				maze[y][x] = '#';
+			}
+	};
+}
+
 int main() {
 
 	using namespace std;
 
-	cout << "Maze" << endl;
-
-	const unsigned int X = 80;
-	const unsigned int Y = 40;
-
-	// Create maze
-	vector<char> raster(X, '.');
-	vector<vector<char>> maze(Y, raster);
-
-	// Start at top left
-	unsigned int x = X / 2;
+	// Start position
+	unsigned int x = 0;
 	unsigned int y = 0;
+
+	bit::map maze(80, 40);
 
 	for (unsigned int i = 0; i < 20; ++i) {
 
-		// Jump to top of screen
-		system("tput cup 0 0");
-
-		// Set the current point
-		maze.at(y).at(x) = '#';
-
-		// Print maze
-		for_each(maze.cbegin(), maze.cend(), [](auto &r) {
-
-			for_each(r.cbegin(), r.cend(), [](auto &b) { cout << b; });
-
-			cout << endl;
-		});
-
 		// Move to new position
 		++x;
-		// ++y;
+		++y;
+
+		maze.set(x, y);
+		maze.print();
 	}
 
 	return 0;
