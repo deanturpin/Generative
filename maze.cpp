@@ -8,20 +8,37 @@ int main() {
 
 	cout << "Maze" << endl;
 
-	const int X = 80;
-	const int Y = 40;
+	const unsigned int X = 80;
+	const unsigned int Y = 40;
 
 	// Create maze
 	vector<char> raster(X, '.');
 	vector<vector<char>> maze(Y, raster);
 
-	// Print maze
-	for_each(maze.cbegin(), maze.cend(), [](auto &r) {
+	// Start at top left
+	unsigned int x = X / 2;
+	unsigned int y = 0;
 
-		for_each(r.cbegin(), r.cend(), [](auto &b) { cout << b; });
+	for (unsigned int i = 0; i < 20; ++i) {
 
-		cout << endl;
-	});
+		// Jump to top of screen
+		system("tput cup 0 0");
+
+		// Set the current point
+		maze.at(y).at(x) = '#';
+
+		// Print maze
+		for_each(maze.cbegin(), maze.cend(), [](auto &r) {
+
+			for_each(r.cbegin(), r.cend(), [](auto &b) { cout << b; });
+
+			cout << endl;
+		});
+
+		// Move to new position
+		++x;
+		// ++y;
+	}
 
 	return 0;
 }
