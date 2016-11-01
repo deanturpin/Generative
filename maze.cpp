@@ -18,8 +18,12 @@ namespace bit {
 			map(const unsigned int x, const unsigned int y)
 			: X(x)
 			, Y(y)
-			, raster(X, '.')
-			, maze(Y, raster) {}
+			, raster(X, ' ')
+			, maze(Y, raster) {
+
+				// Hide the cursor
+				system("tput civis");
+			}
 
 			void print() const {
 
@@ -27,6 +31,7 @@ namespace bit {
 				system("tput cup 0 0");
 
 				for (const auto &r : maze) {
+
 					for (const auto &c : r)
 						cout << c;
 
@@ -50,13 +55,20 @@ int main() {
 	unsigned int x = 0;
 	unsigned int y = 0;
 
-	bit::map maze(80, 40);
+	bit::map maze(260, 164);
 
-	for (unsigned int i = 0; i < 20; ++i) {
+	for (unsigned int i = 0; i < 100; ++i) {
 
 		// Move to new position
-		++x;
-		++y;
+
+		if (y % 3) {
+			++x;
+			++y;
+		}
+		else {
+			++y;
+			x += 2;
+		}
 
 		maze.set(x, y);
 		maze.print();
