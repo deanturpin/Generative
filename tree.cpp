@@ -22,20 +22,20 @@ namespace bit {
 			, maze(Y, raster) {
 
 				// Hide the cursor
-				system("tput civis");
+				// system("tput civis");
 			}
 
 			void print() const {
 
 				// Jump to top of screen
-				system("tput cup 0 0");
+				// system("tput cup 0 0");
 
 				for (const auto &r : maze) {
 
 					for (const auto &c : r)
 						cout << c;
 
-					cout << '|' << endl;
+					cout << endl;
 				}
 			}
 
@@ -46,7 +46,7 @@ namespace bit {
 					return false;
 
 				// If so, set the bit
-				maze[y][x] = '#';
+				// maze[y][x] = '#';
 
 				return true;
 			}
@@ -68,54 +68,55 @@ int main() {
 	using namespace std;
 
 	// Create bitmap
-	bit::map b(260, 164);
+	// bit::map b(260, 164);
+	bit::map b(80, 40);
 
 	// A node is a coordinate and a direction
 	struct node {
 		unsigned int x;
 		unsigned int y;
-		int direction;
+		unsigned int speed;
 	};
 
 	// Create container of nodes
 	vector<struct node> nodes;
 
 	{
-	// Create some nodes 
-	struct node n1 = {0, 0, 1};
-	struct node n2 = {b.width() / 2, b.height() / 2, -1};
-	struct node n3 = {50, 60, -1};
-	struct node n4 = {60, 60, 1};
-
-	nodes.emplace_back(n1);
-	nodes.emplace_back(n2);
-	nodes.emplace_back(n3);
-	nodes.emplace_back(n4);
+	// Create first node 
+	struct node n = {b.width() / 2, 0, 1};
+	nodes.emplace_back(n);
 	}
 
-	// Iterate over nodes
-	for (auto &n : nodes) {
+	for (unsigned int i = 0; i < 100; ++i) {
 
-		for (unsigned int i = 0; i < 1000; ++i) {
+		// Iterate over nodes
+		for (auto &n : nodes) {
 
-			if (n.y % 10) {
-				n.x += n.direction;
-				n.y += n.direction;
+			// Move down
+			n.y += n.speed;
+
+			// Check and set
+			if(!b.set(n.x, n.y))
+				break;
+
+			// Maybe create a new branch
+			// if (!(i % 10)) {
+			if (i == 10) {
+
+				// Create new node
+				{
+				struct node _n(n); // {n.x - n.speed, n.y, 1};
+				--_n.x;
+				nodes.emplace_back(_n);
+				}
+
+				++n.x; //  += n.speed;
 			}
-			else {
-				n.x += n.direction;
-				++n.y;
-			}
-
-			// Move to new position
-			// Change direction if not possible
-			if(!b.set(n.x, n.y) || !(n.x % 10))
-				n.direction = -n.direction;
 		}
-
-		// Print it
-		b.print();
 	}
+
+	// Print it
+	b.print();
 
 	return 0;
 }
