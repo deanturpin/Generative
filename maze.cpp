@@ -70,34 +70,47 @@ int main() {
 	// Create bitmap
 	bit::map b(260, 164);
 
-	// Create container of nodes
-	vector<pair<unsigned int, unsigned int>> nodes;
+	// A node is a coordinate and a direction
+	struct node {
+		unsigned int x;
+		unsigned int y;
+		int direction;
+	};
 
+	// Create container of nodes
+	vector<struct node> nodes;
+
+	{
 	// Create some nodes 
-	nodes.push_back(make_pair(b.width() / 2, b.height() / 2));
-	nodes.push_back(make_pair(0, 0));
+	struct node n1 = {0, 0, 1};
+	struct node n2 = {b.width() / 2, b.height() / 2, -1};
+	struct node n3 = {50, 60, -1};
+	struct node n4 = {60, 60, 1};
+
+	nodes.emplace_back(n1);
+	nodes.emplace_back(n2);
+	nodes.emplace_back(n3);
+	nodes.emplace_back(n4);
+	}
 
 	// Iterate over nodes
 	for (auto &n : nodes) {
 
 		for (unsigned int i = 0; i < 1000; ++i) {
 
-			if (n.second % 6) {
-				++n.first;
-				++n.second;
+			if (n.y % 10) {
+				n.x += n.direction;
+				n.y += n.direction;
 			}
 			else {
-				++n.second;
-				n.first += 2;
+				n.x += n.direction;
+				++n.y;
 			}
 
-			if (!(n.first % 10))
-				n.first -= 5;
-
 			// Move to new position
-			// Jump out of loop if it cannot be set
-			if(!b.set(n.first, n.second))
-				break;
+			// Change direction if not possible
+			if(!b.set(n.x, n.y) || !(n.x % 10))
+				n.direction = -n.direction;
 		}
 
 		// Print it
