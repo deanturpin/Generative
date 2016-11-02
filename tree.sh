@@ -1,21 +1,37 @@
 #!/bin/bash
 
 # Initialise array
-raster=()
-for i in {1..87}; do
+declare -a raster
+for i in {0..39}; do
 
-	raster+=' '
+	raster[i]='.'
 done
 
-echo size of array ${#raster}
-
 # Start node
-raster[40]='#'
+raster[10]='#'
 
 # Print array
 for (( i = 0; i < 40; ++i )); do
 
-	echo ${raster[@]}
+	# if (( !(i %3) )); then
+
+		# Find each node and split it
+		# for (( j = 0; j < 40; ++j )); do
+
+			# if [[ ${raster[j]} ~= '#' ]]; then
+
+				# Split current
+				# raster[j]='.'
+				# raster[j-1]='#'
+				# raster[j+1]='#'
+
+				# raster[j]='-'
+				# continue
+			# fi
+		# done
+	# fi
+
+	echo ${raster[*]}
 
 	sleep 0.01
 done
