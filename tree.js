@@ -1,22 +1,19 @@
 #!/usr/bin/node
 
 // A node
-function Node(x, y) {
+function node(x, y) {
 
 	// Position
-	this.X = x;
-	this.Y = y;
+	this.x = x;
+	this.y = y;
 
 	// Debug
-	this.print = function() {
-
-		console.log(x + ", " + y + ",")
-	}
+	this.print = function() { console.log(x + ", " + y + ",") }
 }
 
 // Create first node
 nodes = []
-nodes[nodes.length] = new Node(0, 0)
+nodes[nodes.length] = new node(0, 0)
 
 // Dump all points
 console.log("size of array", nodes.length)
