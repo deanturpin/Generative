@@ -1,12 +1,14 @@
 #!/usr/bin/node
 
-// Initialise scan
-scan = []
-for (i = 0; i < 40; ++i)
-	scan[i] = 0
+// A node
+function Node(x, y) {
 
-scan[30] = 1
+	this.X = x;
+	this.Y = y;
+}
 
-console.log("size of array", scan.length)
-console.log(scan)
+// Create first node
+nodes = []
+nodes[nodes.length] = new Node(0, 0)
 
+console.log("size of array", nodes.length)
