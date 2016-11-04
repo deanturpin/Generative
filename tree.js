@@ -1,21 +1,29 @@
 #!/usr/bin/node
 
 // A node
-function node(x, y) {
+function node(x, y, d) {
 
 	// Position
 	this.x = x;
 	this.y = y;
+	this.direction = d;
 
 	// Debug
-	this.print = function() { console.log(x + ", " + y + ",") }
+	this.print = function() {
+		
+		console.log(this.x + ", " + this.y + "," + this.direction / radians)
+	}
 }
 
-// Create first node
-nodes = []
-nodes[nodes.length] = new node(0, 0)
+// Branch properties
+const length = 5
+const radians = 2 * Math.PI / 360
+const angle = 10 * radians
 
-jitter = 1
+// Create first node at the origin pointing upwards
+nodes = []
+nodes[nodes.length] = new node(0.0, 0.0, 90 * radians)
+
 for (i = 0; i < 5; ++i) {
 
 	totalNodes = nodes.length
@@ -23,15 +31,17 @@ for (i = 0; i < 5; ++i) {
 	// Iterate over nodes adding new branches
 	for (n = 0; n < totalNodes; ++n) {
 
-		// New left branch
-		x = nodes[n].x - 1 - (jitter * Math.random())
-		y = nodes[n].y + 3 + (jitter * Math.random())
-		nodes[nodes.length] = new node(x, y)
+		// New clockwise branch
+		direction = nodes[n].direction - angle
+		x = nodes[n].x + (length * Math.cos(direction))
+		y = nodes[n].y + (length * Math.sin(direction))
+		nodes[nodes.length] = new node(x, y, direction)
 
-		// New right branch
-		x = nodes[n].x + 1 + (jitter * Math.random())
-		y = nodes[n].y + 3 + (jitter * Math.random())
-		nodes[nodes.length] = new node(x, y)
+		// New anticlockwise branch
+		direction = nodes[n].direction + angle
+		x = nodes[n].x + (length * Math.cos(direction))
+		y = nodes[n].y + (length * Math.sin(direction))
+		nodes[nodes.length] = new node(x, y, direction)
 	}
 }
 
