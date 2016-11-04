@@ -1,11 +1,13 @@
 #!/usr/bin/node
 
 // A node
-function node(x, y, d, l) {
+function node(x1, y1, x2, y2, d, l) {
 
 	// Position
-	this.x = x;
-	this.y = y;
+	this.x1 = x1;
+	this.y1 = y1;
+	this.x2 = x2;
+	this.y2 = y2;
 	this.direction = d;
 	this.length = l;
 	this.angle = 20
@@ -15,12 +17,18 @@ function node(x, y, d, l) {
 	this.print = function() {
 		
 		console.log(
-			this.x,
-			this.y,
-			this.direction,
-			this.length,
-			this.angle
+
+			this.x1,
+			this.y1
 		)
+
+		console.log(
+
+			this.x2,
+			this.y2
+		)
+
+		console.log()
 	}
 
 	this.branch = function(sway) {
@@ -29,11 +37,11 @@ function node(x, y, d, l) {
 		const direction = this.direction + (this.angle * sway)
 
 		// Trig
-		var x = this.x + (this.length * Math.cos(direction * this.radians))
-		var y = this.y + (this.length * Math.sin(direction * this.radians))
+		var x3 = this.x2 + (this.length * Math.cos(direction * this.radians))
+		var y3 = this.y2 + (this.length * Math.sin(direction * this.radians))
 
 		// Return new node
-		return new node(x, y, direction, this.length)
+		return new node(this.x2, this.y2, x3, y3, direction, this.length * (0.6 * Math.random()))
 	}
 }
 
@@ -42,19 +50,18 @@ const scale = 0.9
 
 // Create first node at the origin pointing upwards
 nodes = []
-nodes[nodes.length] = new node(0.0, 0.0, 90, 5)
+nodes[nodes.length] = new node(0, 0, 0, 5, 90, 5)
 
-for (i = 0; i < 2; ++i) {
+for (i = 0; i < 3; ++i) {
 
 	totalNodes = nodes.length
 
 	// Iterate over nodes adding new branches
 	for (n = 0; n < totalNodes; ++n) {
 
-		// New clockwise branch
+		// New branches
 		nodes[nodes.length] = nodes[n].branch(1)
-
-		// New anticlockwise branch
+		nodes[nodes.length] = nodes[n].branch(0.1)
 		nodes[nodes.length] = nodes[n].branch(-1)
 	}
 }
