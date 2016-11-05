@@ -1,8 +1,6 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<meta http-equiv="refresh" content="0.5">
-
 		<style>
 			body { margin: 0px; padding: 0px; }
 		</style>
@@ -37,9 +35,8 @@
 					this.x2 = this.x1 + (this.length * Math.cos(this.direction * radians))
 					this.y2 = this.y1 + (this.length * Math.sin(this.direction * radians))
 
-					const scale = 20;
+					const scale = 18;
 					const xOffset = 400;
-					// const yOffset = 400;
 
 					context.beginPath();
 					context.moveTo(xOffset + scale * this.x1, 700 - scale * this.y1);
@@ -64,29 +61,47 @@
 				}
 			}
 
-			// Create first node at the origin pointing upwards
-			nodes = []
-			nodes[nodes.length] = new node(0, 0, 88 + 4 * Math.random(),
-				15 + 1 * Math.random(), 50)
-			nodes[0].grow()
+			function draw() {
 
-			firstNode = 0
+				// Create first node at the origin pointing upwards
+				nodes = []
+				nodes[nodes.length] = new node(
+					0, // x
+					0, // y
+					88 + 4 * Math.random(), // direction
+					15 + 1 * Math.random(), // length
+					70 // angle
+				)
 
-			for (i = 0; i < 10; ++i) {
+				// Grow the first node
+				nodes[0].grow()
 
-				totalNodes = nodes.length
+				firstNode = 0
 
-				// Iterate over nodes adding new branches
-				for (n = firstNode; n < totalNodes; ++n) {
+				for (i = 0; i < 10; ++i) {
 
-					// Branch node
-					nodes[nodes.length] = nodes[n].branch(1 + .2 * Math.random())
-					nodes[nodes.length] = nodes[n].branch(0.1 * Math.random())
-					nodes[nodes.length] = nodes[n].branch(-1 - .2 * Math.random())
+					totalNodes = nodes.length
+
+					// Iterate over nodes adding new branches
+					for (n = firstNode; n < totalNodes; ++n) {
+
+						// Branch node
+						nodes[nodes.length] = nodes[n].branch(1 + .2 * Math.random())
+						nodes[nodes.length] = nodes[n].branch(0.1 * Math.random())
+						nodes[nodes.length] = nodes[n].branch(-1 - .2 * Math.random())
+					}
+
+					firstNode = totalNodes
 				}
-
-				firstNode = totalNodes
 			}
+
+			// Periodically draw the tree
+			setInterval(function() {
+
+				context.clearRect(0, 0, canvas.width, canvas.height);
+				draw()
+			}, 1000);
+
 		</script>
 	</body>
 </html>
