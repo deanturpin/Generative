@@ -37,6 +37,18 @@ function node(x, y, d, l, a) {
 		// Trig
 		this.x2 = this.x1 + (this.length * Math.cos(this.direction * radians))
 		this.y2 = this.y1 + (this.length * Math.sin(this.direction * radians))
+
+		console.log(
+
+			this.x1,
+			this.y1
+		)
+
+		console.log(
+
+			this.x2,
+			this.y2
+		)
 	}
 
 	// Branch this node
@@ -47,7 +59,7 @@ function node(x, y, d, l, a) {
 
 		// Return new node
 		var n = new node(this.x2, this.y2,
-			direction, this.length * 0.9, this.angle * 0.5)
+			direction, this.length * .5 + Math.random() * .4, this.angle * .7)
 
 		// And grow it
 		n.grow()
@@ -58,12 +70,12 @@ function node(x, y, d, l, a) {
 
 // Create first node at the origin pointing upwards
 nodes = []
-nodes[nodes.length] = new node(0, 0, 90, 5, 40)
+nodes[nodes.length] = new node(0, 0, 90, 5, 30)
 nodes[0].grow()
 
 firstNode = 0
 
-for (i = 0; i < 6; ++i) {
+for (i = 0; i < 3; ++i) {
 
 	totalNodes = nodes.length
 
@@ -71,13 +83,14 @@ for (i = 0; i < 6; ++i) {
 	for (n = firstNode; n < totalNodes; ++n) {
 
 		// Branch node
-		nodes[nodes.length] = nodes[n].branch(1)
-		nodes[nodes.length] = nodes[n].branch(-1)
+		nodes[nodes.length] = nodes[n].branch(1 + .2 * Math.random())
+		nodes[nodes.length] = nodes[n].branch(0.1 * Math.random())
+		nodes[nodes.length] = nodes[n].branch(-1 - .2 * Math.random())
 	}
 
 	firstNode = totalNodes
 }
 
 // Dump all points
-for (n = 0; n < nodes.length; ++n)
-	nodes[n].print()
+// for (n = 0; n < nodes.length; ++n)
+	// nodes[n].print()
