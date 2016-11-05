@@ -9,6 +9,9 @@ See an [animated version](https://rawgit.com/deanturpin/Generative/master/tree.h
 
 ![](img/tree.png)
 
+### Spirograph
+![](img/spirograph.png)
+
 ### Feather
 ![](img/feather.png)
 
