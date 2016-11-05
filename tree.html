@@ -7,8 +7,8 @@
 		<canvas id="myCanvas" width="800" height="700"></canvas>
 
 		<script>
-			var canvas = document.getElementById("myCanvas");
-			var context = canvas.getContext("2d");
+			var canvas = document.getElementById("myCanvas")
+			var context = canvas.getContext("2d")
 
 			// Radians in a circle
 			const radians = 2 * Math.PI / 360
@@ -40,16 +40,16 @@
 					this.y2 = this.y1 + (this.length * Math.sin(this.direction * radians))
 
 					// Scale the tree
-					const scale = 18;
-					const xOffset = 400;
+					const scale = 18
+					const offset = 400
 
 					// Render current branch
-					context.beginPath();
-					context.moveTo(xOffset + scale * this.x1, 700 - scale * this.y1);
-					context.lineTo(xOffset + scale * this.x2, 700 - scale * this.y2);
-					context.lineWidth = this.width;
+					context.beginPath()
+					context.moveTo(offset + scale * this.x1, 700 - scale * this.y1)
+					context.lineTo(offset + scale * this.x2, 700 - scale * this.y2)
+					context.lineWidth = this.width
 					context.strokeStyle = "#0f3f08"
-					context.stroke();
+					context.stroke()
 				}
 
 				// Branch this node
@@ -112,10 +112,10 @@
 			// Periodically draw the tree
 			setInterval(function() {
 
-				context.clearRect(0, 0, canvas.width, canvas.height);
+				context.clearRect(0, 0, canvas.width, canvas.height)
 				draw()
 
-			}, 2000);
+			}, 2000)
 		</script>
 	</body>
 </html>
