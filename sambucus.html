@@ -82,7 +82,7 @@
 					88 + 4 * Math.random(), // direction
 					15 + 1 * Math.random(), // length
 					10, // width
-					80 // angle
+					30 // angle
 				)
 
 				// Grow the first node
@@ -91,7 +91,7 @@
 				firstNode = 0
 
 				// Branch for a few iterations
-				for (i = 0; i < 10; ++i) {
+				for (i = 0; i < 6; ++i) {
 
 					// Store final node before adding more
 					totalNodes = nodes.length
@@ -101,7 +101,9 @@
 
 						// Branch node
 						nodes[nodes.length] = nodes[n].branch(1 + .2 * Math.random())
-						nodes[nodes.length] = nodes[n].branch(-0.2 + .4 * Math.random())
+						nodes[nodes.length] = nodes[n].branch(-0.5 + .2 * Math.random())
+						nodes[nodes.length] = nodes[n].branch(-0.1 + .2 * Math.random())
+						nodes[nodes.length] = nodes[n].branch(0.5 + .2 * Math.random())
 						nodes[nodes.length] = nodes[n].branch(-1 - .2 * Math.random())
 					}
 
