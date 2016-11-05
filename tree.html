@@ -42,12 +42,19 @@
 
 					// Scale the tree
 					const scale = 18
-					const offset = 400
+					const xOffset = 400
+					const yOffset = 700
+
+					// End points
+					const x1 = xOffset + (scale * this.x1)
+					const y1 = yOffset - (scale * this.y1)
+					const x2 = xOffset + (scale * this.x2)
+					const y2 = yOffset - (scale * this.y2)
 
 					// Render current branch
 					context.beginPath()
-					context.moveTo(offset + scale * this.x1, 700 - scale * this.y1)
-					context.lineTo(offset + scale * this.x2, 700 - scale * this.y2)
+					context.moveTo(x1, y1)
+					context.lineTo(x2, y2)
 					context.lineWidth = this.width
 					context.strokeStyle = "#a67b5b"
 					context.stroke()
