@@ -1,31 +1,35 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<style>
-			body { margin: 0px; padding: 0px; }
-		</style>
 	</head>
 
 	<body>
 		<canvas id="myCanvas" width="800" height="700"></canvas>
 
 		<script>
-			var canvas = document.getElementById('myCanvas');
-			var context = canvas.getContext('2d');
+			var canvas = document.getElementById("myCanvas");
+			var context = canvas.getContext("2d");
 
 			// Radians in a circle
 			const radians = 2 * Math.PI / 360
 
 			// A node
-			function node(x, y, d, l, a) {
+			function node(x, y, d, l, w, a) {
 
-				// Position
-				this.x1 = x;
-				this.y1 = y;
-				this.x2 = 0;
-				this.y2 = 0;
-				this.direction = d;
-				this.length = l;
+				// Start and end coordinates
+				this.x1 = x
+				this.y1 = y
+
+				// End points are defaulted until the node grows
+				this.x2 = 0
+				this.y2 = 0
+
+				// Direction, width and length of growth
+				this.direction = d
+				this.length = l
+				this.width = w
+
+				// Angle of subsequent branches
 				this.angle = a
 
 				// Grow this node
@@ -41,6 +45,7 @@
 					context.beginPath();
 					context.moveTo(xOffset + scale * this.x1, 700 - scale * this.y1);
 					context.lineTo(xOffset + scale * this.x2, 700 - scale * this.y2);
+					context.lineWidth = this.width;
 					context.stroke();
 				}
 
@@ -52,7 +57,8 @@
 
 					// Return new node
 					var n = new node(this.x2, this.y2,
-						direction, this.length * .5 + Math.random() * .4, this.angle * .7)
+						direction, this.length * .5 + Math.random() * .4,
+						this.width * .6, this.angle * .7)
 
 					// And grow it
 					n.grow()
@@ -61,6 +67,7 @@
 				}
 			}
 
+			// Draw a tree
 			function draw() {
 
 				// Create first node at the origin pointing upwards
@@ -70,7 +77,8 @@
 					0, // y
 					88 + 4 * Math.random(), // direction
 					15 + 1 * Math.random(), // length
-					70 // angle
+					10, // width
+					80 // angle
 				)
 
 				// Grow the first node
@@ -78,8 +86,10 @@
 
 				firstNode = 0
 
+				// Branch for a few iterations
 				for (i = 0; i < 10; ++i) {
 
+					// Store final node before adding more
 					totalNodes = nodes.length
 
 					// Iterate over nodes adding new branches
@@ -87,10 +97,11 @@
 
 						// Branch node
 						nodes[nodes.length] = nodes[n].branch(1 + .2 * Math.random())
-						nodes[nodes.length] = nodes[n].branch(0.1 * Math.random())
+						nodes[nodes.length] = nodes[n].branch(-0.2 + .4 * Math.random())
 						nodes[nodes.length] = nodes[n].branch(-1 - .2 * Math.random())
 					}
 
+					// On the next iteration only branch the new nodes
 					firstNode = totalNodes
 				}
 			}
@@ -100,8 +111,8 @@
 
 				context.clearRect(0, 0, canvas.width, canvas.height);
 				draw()
-			}, 1000);
 
+			}, 2000);
 		</script>
 	</body>
 </html>
