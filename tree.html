@@ -9,7 +9,7 @@
 	</head>
 
 	<body>
-		<canvas id="myCanvas" width="800" height="800"></canvas>
+		<canvas id="myCanvas" width="800" height="700"></canvas>
 
 		<script>
 			var canvas = document.getElementById('myCanvas');
@@ -39,10 +39,11 @@
 
 					const scale = 20;
 					const xOffset = 400;
+					// const yOffset = 400;
 
 					context.beginPath();
-					context.moveTo(xOffset + scale * this.x1, scale * this.y1);
-					context.lineTo(xOffset + scale * this.x2, scale * this.y2);
+					context.moveTo(xOffset + scale * this.x1, 700 - scale * this.y1);
+					context.lineTo(xOffset + scale * this.x2, 700 - scale * this.y2);
 					context.stroke();
 				}
 
@@ -65,13 +66,13 @@
 
 			// Create first node at the origin pointing upwards
 			nodes = []
-			nodes[nodes.length] = new node(0, 0, 88 + 4 * Math.random(), 15 + 1 *
-			Math.random(), 50)
+			nodes[nodes.length] = new node(0, 0, 88 + 4 * Math.random(),
+				15 + 1 * Math.random(), 50)
 			nodes[0].grow()
 
 			firstNode = 0
 
-			for (i = 0; i < 5; ++i) {
+			for (i = 0; i < 10; ++i) {
 
 				totalNodes = nodes.length
 
