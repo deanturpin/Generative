@@ -7,10 +7,10 @@
 ### Tree
 See an [animated version](https://rawgit.com/deanturpin/Generative/master/tree.html).
 
-![](tree.png)
+![](img/tree.png)
 
 ### Feather
-![](feather.png)
+![](img/feather.png)
 
 ### Sambucus (elderberry)
-![](sambucus.png)
+![](img/sambucus.png)
