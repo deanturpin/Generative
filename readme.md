@@ -5,4 +5,6 @@
 - http://inconvergent.net/
 
 ### Tree
+See an [animated version](https://rawgit.com/deanturpin/Generative/master/tree.html).
+
 ![](tree.png)
