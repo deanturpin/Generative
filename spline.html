@@ -47,21 +47,22 @@
 					const yOffset = 700
 
 					// End points
-					const x1 = xOffset + scale * this.x1
-					const y1 = yOffset - scale * this.y1
-					const x2 = xOffset + scale * this.x2
-					const y2 = yOffset - scale * this.y2
+					const x1 = xOffset + (scale * this.x1)
+					const y1 = yOffset - (scale * this.y1)
+					const x2 = xOffset + (scale * this.x2)
+					const y2 = yOffset - (scale * this.y2)
 
 					// Control points
-					const xc = (x2 - x1) / 2
-					const yc = (y2 - y1) / 2
+					const xc = 1 // (x2 - x1) / 2
+					const yc = 1 // (y2 - y1) / 2
 
 					// Render current branch
 					context.beginPath()
 					context.moveTo(x1, x2)
+					// context.lineTo(x2, y2)
 					context.quadraticCurveTo(x2, y2, xc, yc)
 					context.lineWidth = this.width
-					context.strokeStyle = "#a67b5b"
+					context.strokeStyle = "#fab"
 					context.stroke()
 				}
 
@@ -73,8 +74,8 @@
 
 					// Return new node
 					var n = new node(this.x2, this.y2,
-						direction, this.length * .5 + Math.random() * .4,
-						this.width * .6, this.angle * .7)
+						direction, this.length * .5,
+						this.width, this.angle * .7)
 
 					// And grow it
 					n.grow()
@@ -103,7 +104,7 @@
 				firstNode = 0
 
 				// Branch for a few iterations
-				for (i = 0; i < 4; ++i) {
+				for (i = 0; i < 0; ++i) {
 
 					// Store final node before adding more
 					totalNodes = nodes.length

@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="refresh" content="2">
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+	</head>
+
+	<body>
+		<canvas id="myCanvas" width="800" height="700"></canvas>
+
+		<script>
+			var canvas = document.getElementById("myCanvas")
+			var context = canvas.getContext("2d")
+
+			function node(x, y, l, d) {
+
+				this.x = x
+				this.y = y
+				this.x2 = 0
+				this.y2 = 0
+				this.length = l
+				this.direction = d
+
+				this.branch = function() {
+
+					// Radians in a circle
+					const r = 2 * Math.PI / 360
+
+					// End point
+					this.x2 = this.x + (this.length * Math.cos(this.direction * r))
+					this.y2 = this.y + (this.length * Math.sin(this.direction * r))
+
+					// Render stroke
+					context.beginPath()
+					context.moveTo(this.x, this.y)
+					context.lineTo(this.x2, this.y2)
+					context.lineWidth = 3
+					context.strokeStyle = "#b0f"
+					context.stroke()
+
+					return new node(this.x2, this.y2, this.length,
+					this.direction + 95)
+				}
+			}
+
+			// First node
+			n = new node(600, 200, 400, 110)
+
+			for (i = 0; i < 50; ++i)
+				n = n.branch()
+		</script>
+	</body>
+</html>
