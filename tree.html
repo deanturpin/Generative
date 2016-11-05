@@ -20,7 +20,7 @@
 				this.x1 = x
 				this.y1 = y
 
-				// End points are defaulted until the node grows
+				// End points are defaulted until node is grown
 				this.x2 = 0
 				this.y2 = 0
 
@@ -39,13 +39,16 @@
 					this.x2 = this.x1 + (this.length * Math.cos(this.direction * radians))
 					this.y2 = this.y1 + (this.length * Math.sin(this.direction * radians))
 
+					// Scale the tree
 					const scale = 18;
 					const xOffset = 400;
 
+					// Render current branch
 					context.beginPath();
 					context.moveTo(xOffset + scale * this.x1, 700 - scale * this.y1);
 					context.lineTo(xOffset + scale * this.x2, 700 - scale * this.y2);
 					context.lineWidth = this.width;
+					context.strokeStyle = "#0f3f08"
 					context.stroke();
 				}
 
