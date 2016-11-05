@@ -11,3 +11,6 @@ See an [animated version](https://rawgit.com/deanturpin/Generative/master/tree.h
 
 ### Feather
 ![](feather.png)
+
+### Sambucus (elderberry)
+![](sambucus.png)
