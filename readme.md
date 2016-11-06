@@ -11,6 +11,7 @@ See an [animated version](https://rawgit.com/deanturpin/Generative/master/tree.h
 
 ### Spirograph
 ![](img/spirograph.png)
+![](img/spirograph2.png)
 
 ### Feather
 ![](img/feather.png)

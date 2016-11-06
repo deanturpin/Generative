@@ -18,8 +18,6 @@
 
 				this.x = x
 				this.y = y
-				this.x2 = 0
-				this.y2 = 0
 				this.width = w
 				this.length = l
 				this.direction = d
@@ -48,7 +46,7 @@
 						y2,
 						this.length + 1 * Math.random(),
 						this.width * .99,
-						this.direction + (360 / 3) + .2 * Math.random() 
+						this.direction + (360 / 3.5) + .2 * Math.random() 
 					)
 				}
 			}
@@ -57,19 +55,19 @@
 			n = new node(
 
 				// X
-				200,
+				600,
 
 				// Y
 				300,
 
 				// Length
-				400,
+				300,
 
 				// Width
-				3,
+				1,
 
-				// Direction
-				0	
+				// Branch angle
+				120	
 			)
 
 			for (i = 0; i < 1000; ++i)
