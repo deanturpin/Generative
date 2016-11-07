@@ -18,3 +18,6 @@ See an [animated version](https://rawgit.com/deanturpin/Generative/master/tree.h
 
 ### Sambucus (elderberry)
 ![](img/sambucus.png)
+
+### Seaweed
+![](img/seaweed.png)
