@@ -15,7 +15,7 @@
 			var canvas = document.getElementById("myCanvas")
 			var context = canvas.getContext("2d")
 
-			function node(x, y, length, width, direction, colour) {
+			function node(iteration, x, y, length, width, direction, colour) {
 
 				// Branch current node
 				this.branch = function() {
@@ -32,23 +32,35 @@
 					context.moveTo(x, y)
 					context.lineTo(x2, y2)
 					context.lineWidth = width
-					context.strokeStyle = "rgb(" + colour + ", " + colour + ", 0)"
+					context.strokeStyle = "rgb(" + colour + ", " + colour + ", 100)"
 					context.stroke()
 
-					// Return node starting at current end point
-					return new node(
-						x2,
-						y2,
-						length - 10 + 20 * Math.random(),
-						width * 1.3,
-						direction -20 + 40 * Math.random(),
-						colour + 40
-					)
+					console.log(iteration)
+
+					if (iteration > 0) {
+
+						node(
+
+							--iteration,
+							x2,
+							y2,
+							length - 10 + 20 * Math.random(),
+							width * 1.3,
+							direction -20 + 40 * Math.random(),
+							colour + 20
+						)
+					}
 				}
+
+				// Branch itself
+				this.branch()
 			}
 
 			// First node
 			n = new node(
+
+				// Iterations
+				10,
 
 				// X
 				400,
@@ -68,9 +80,6 @@
 				// Colour
 				0
 			)
-
-			for (i = 0; i < 10; ++i)
-				n = n.branch()
 		</script>
 	</body>
 </html>
