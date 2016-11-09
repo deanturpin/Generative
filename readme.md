@@ -21,3 +21,13 @@ See an [animated version](https://rawgit.com/deanturpin/Generative/master/tree.h
 
 ### Seaweed
 ![](img/seaweed.png)
+
+### Hair
+![](img/hair.png)
+
+### Vein
+![](img/vein.png)
+
+### Vein 2
+![](img/vein2.png)
+

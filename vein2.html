@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Tributary</title>
+		<meta http-equiv="refresh" content="5">
+		<style>
+			body { background-color: cyan }
+		</style>
+	</head>
+
+	<body>
+		<canvas id="myCanvas" width="800" height="800"></canvas>
+
+		<script>
+			var canvas = document.getElementById("myCanvas")
+			var context = canvas.getContext("2d")
+
+			function node(iteration, x, y, length, width, direction, colour) {
+
+				// Branch current node
+				this.branch = function() {
+
+					// Radians in a circle
+					const r = 2 * Math.PI / 360
+
+					// End point
+					const x2 = x + length * Math.cos(direction * r)
+					const y2 = y + length * Math.sin(direction * r)
+
+					// Render stroke
+					context.beginPath()
+					context.moveTo(x, 700 - y)
+					context.lineTo(x2, 700 - y2)
+					context.lineWidth = width
+					context.strokeStyle = "rgb(" + 255 + ", " + colour + ", " + colour + ")"
+					context.stroke()
+
+					console.log(iteration)
+
+					if (iteration > 0) {
+
+						if (Math.random() < .01) {
+							node(
+
+								--iteration,
+								x2,
+								y2,
+								length - 2 * Math.random(),
+								width * 2,
+								90 + direction * 0.9 * Math.random(),
+								colour + 10
+							)
+						}
+						else {
+
+							node(
+
+								--iteration,
+								x2,
+								y2,
+								length + 2 * Math.random(),
+								width / 2,
+								90 + direction * 0.9 * Math.random(),
+								colour + 10
+							)
+
+							node(
+
+								--iteration,
+								x2,
+								y2,
+								length + 2 * Math.random(),
+								width / 2,
+								90 - direction * 0.9 * Math.random(),
+								colour + 10
+							)
+						}
+					}
+				}
+
+				// Branch itself
+				this.branch()
+			}
+
+			// First node
+			for (i = 0; i < 40; ++i)
+				n = new node(
+
+					// Iterations
+					10,
+
+					// X
+					400,
+
+					// Y
+					0,
+
+					// Length
+					70 + 10 * Math.random(),
+
+					// Width
+					10 * Math.random(),
+
+					// Branch angle
+					10,
+
+					// Colour
+					40
+				)
+		</script>
+	</body>
+</html>
