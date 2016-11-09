@@ -13,9 +13,6 @@ See an [animated version](https://rawgit.com/deanturpin/Generative/master/tree.h
 ![](img/spirograph.png)
 ![](img/spirograph2.png)
 
-### Feather
-![](img/feather.png)
-
 ### Sambucus (elderberry)
 ![](img/sambucus.png)
 
