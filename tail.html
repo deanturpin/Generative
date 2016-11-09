@@ -4,7 +4,7 @@
 		<title>Vein</title>
 		<meta http-equiv="refresh" content="2">
 		<style>
-			body { background-color: black }
+			body { background-color: white }
 		</style>
 	</head>
 
@@ -29,29 +29,33 @@
 
 					// Render stroke
 					context.beginPath()
-					context.moveTo(x, 800 - y)
-					context.lineTo(x2, 800 - y2)
+					context.moveTo(x, y)
+					context.lineTo(x2, y2)
 					context.lineWidth = width
 					context.strokeStyle = "rgb(" + r + ", " + g + ", " + b + ")"
 					context.stroke()
 
-					console.log(iteration)
-
 					if (iteration > 0) {
 
+						const sides = 3
 						polarity = 1
-						if (iteration % 2)
+						if (iteration % sides)
 							polarity = -1.1
-							
+
+						d = direction + polarity * (360 / (sides - 1.217))
+
+						if (polarity == 1)
+							d = direction + polarity * 90
+
 						node(
 
 							--iteration,
 							x2,
 							y2,
-							length - 2 * Math.random(),
-							width * 0.9,
-							direction + polarity * 10 + 8 * Math.random(),
-							r + 30, g - 10, b - 10
+							length + .1,
+							width,
+							d,
+							r, g + 2, b
 						)
 					}
 				}
@@ -61,29 +65,28 @@
 			}
 
 			// First node
-			for (i = 0; i < 200; ++i)
-				n = new node(
+			n = new node(
 
-					// Iterations
-					20,
+				// Iterations
+				1420,
 
-					// X
-					4 * i,
+				// X
+				400,
 
-					// Y
-					0,
+				// Y
+				400,
 
-					// Length
-					50,
+				// Length
+				1,
 
-					// Width
-					3,
+				// Width
+				1,
 
-					// Branch angle
-					90,
+				// Branch angle
+				90,
 
-					// Colour
-					0, 200, 200
+				// Colour
+				0, 0, 0
 				)
 		</script>
 	</body>
