@@ -33,3 +33,6 @@ See an [animated version](https://rawgit.com/deanturpin/Generative/master/tree.h
 
 ### Tail
 ![](img/tail.png)
+
+### Fern
+![](img/fern.png)

@@ -4,7 +4,7 @@
 		<title>Vein</title>
 		<meta http-equiv="refresh" content="2">
 		<style>
-			body { background-color: cyan }
+			body { background-color: white }
 		</style>
 	</head>
 
@@ -15,7 +15,14 @@
 			var canvas = document.getElementById("myCanvas")
 			var context = canvas.getContext("2d")
 
+			// Node class
 			function node(iteration, x, y, length, width, direction, r, g, b) {
+
+				// Random number wrapper
+				this.jitter = function(v) {
+
+					return (-v + 2 * v * Math.random())
+				}
 
 				// Branch current node
 				this.branch = function() {
@@ -37,13 +44,26 @@
 
 					if (iteration > 0) {
 
+						// Main branch
 						node(
 
-							--iteration,
+							iteration - 1,
 							x2,
 							y2,
-							length + 2 * Math.random(),
-							width,
+							length * .99 + this.jitter(1),
+							width * 0.75,
+							direction + 14 + this.jitter(1),
+							r, g, b
+						)
+
+						// Left branches
+						node(
+
+							iteration - 1,
+							x2,
+							y2,
+							length / 4,
+							width / 1.5,
 							direction + 45,
 							r, g, b
 						)
@@ -54,29 +74,29 @@
 				this.branch()
 			}
 
-			// First node
-			n = new node(
+			// Create first node
+			node(
 
 				// Iterations
-				200,
+				14,
 
 				// X
 				400,
 
 				// Y
-				400,
+				0,
 
 				// Length
-				50,
+				80,
 
 				// Width
-				1,
+				10,
 
 				// Branch angle
-				90,
+				30,
 
 				// Colour
-				255, 255, 255
+				255, 0, 0
 			)
 		</script>
 	</body>
