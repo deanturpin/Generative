@@ -9,12 +9,17 @@ See an [animated version](https://rawgit.com/deanturpin/Generative/master/tree.h
 
 ![](img/tree.png)
 
-### Spirograph
-![](img/spirograph.png)
-![](img/spirograph2.png)
-
 ### Sambucus (elderberry)
 ![](img/sambucus.png)
+
+### Tail
+![](img/tail.png)
+
+### Arabic
+![](img/arabic.png)
+
+### Grid
+![](img/grid.png)
 
 ### Seaweed
 ![](img/seaweed.png)
@@ -28,14 +33,9 @@ See an [animated version](https://rawgit.com/deanturpin/Generative/master/tree.h
 ### Vein 2
 ![](img/vein2.png)
 
-### Tail
-![](img/tail.png)
-
 ### Fern
 ![](img/fern.png)
 
-### Arabic
-![](img/arabic.png)
-
-### Grid
-![](img/grid.png)
+### Spirograph
+![](img/spirograph.png)
+![](img/spirograph2.png)
