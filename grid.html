@@ -41,6 +41,19 @@
 					context.lineWidth = width
 					context.strokeStyle = "rgb(" + r + ", " + g + ", " + b + ")"
 					context.stroke()
+
+					if (iteration > 0)
+						node(
+
+							--iteration,
+							x2,
+							y2,
+							length * .85 + 1.4 * Math.random(),
+							width,
+							direction - 90 + (Math.random() < .15 ?
+							this.jitter(70) : this.jitter(1.6)),
+							r, g, b
+						)
 				}
 
 				// Branch itself
@@ -48,33 +61,33 @@
 			}
 
 			// Create first node
-			const gridSize = 45
+			const gridSize = 8
 			for (i = 0; i < gridSize; ++i)
 				for (j = 0; j < gridSize; ++j)
 					node(
 
 						// Iterations
-						14,
+						19,
 
 						// X
-						gridSize * j / 3,
+						i * 800 / gridSize,
 
 						// Y
-						gridSize * i / 3,
+						j * 800 / gridSize,
 
 						// Length
-						30,
+						1 * 800 / gridSize,
 
 						// Width
-						3,
+						.5 + 1 * Math.random(),
 
 						// Branch angle
-						j * .3 * Math.random() * 360 / gridSize,
+						0,
 
 						// Colour
 						Math.round(j * 255 / gridSize),
-						Math.round(i * 255 / gridSize),
-						0
+						0,
+						Math.round(255 - j * 255 / gridSize)
 					)
 		</script>
 	</body>
