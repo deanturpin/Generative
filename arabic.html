@@ -1,0 +1,140 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Vein</title>
+		<meta http-equiv="refresh" content="2">
+		<style>
+			body { background-color: white }
+		</style>
+	</head>
+
+	<body>
+		<canvas id="myCanvas" width="800" height="800"></canvas>
+
+		<script>
+			var canvas = document.getElementById("myCanvas")
+			var context = canvas.getContext("2d")
+
+			// Node class
+			function node(iteration, x, y, length, width, direction, r, g, b) {
+
+				// Random number wrapper
+				this.jitter = function(v) {
+
+					return (-v + 2 * v * Math.random())
+				}
+
+				// Branch current node
+				this.branch = function() {
+
+					// Radians in a circle
+					const radians = 2 * Math.PI / 360
+
+					// End point
+					const x2 = x + length * Math.cos(direction * radians)
+					const y2 = y + length * Math.sin(direction * radians)
+
+					// Render stroke
+					context.beginPath()
+					context.moveTo(x, y)
+					context.lineTo(x2, y2)
+					context.lineWidth = width
+					context.strokeStyle = "rgb(" + r + ", " + g + ", " + b + ")"
+					context.stroke()
+
+					// Sometimes add an ascender/descender
+					if (Math.random() < .2)
+						if (iteration > 0)
+							node(
+
+								--iteration,
+								x2,
+								y2,
+								length / 2,
+								width,
+								direction - 90,
+								r, g, b
+							)
+
+					// Occasionally add a dot above
+					if (Math.random() < .5)
+						if (iteration > 0)
+							node(
+
+								--iteration,
+								x2,
+								y2 - width * 2,
+								width,
+								width,
+								direction + (Math.random() < .5 ? 90 : -90),
+								r, g, b
+							)
+
+					// Occasionally add two below
+					if (Math.random() < .3) {
+
+						if (iteration > 0) {
+
+							// First dot
+							node(
+
+								--iteration,
+								x2,
+								y2 + width * 2,
+								width,	
+								width,
+								direction + 90,
+								r, g, b
+							)
+
+							// Second dot
+							node(
+
+								--iteration,
+								x2 + width * 2,
+								y2 + width * 2,
+								width,	
+								width,
+								direction + 90,
+								r, g, b
+							)
+						}
+					}
+				}
+
+				// Branch itself
+				this.branch()
+			}
+
+			// Create first node
+			const gridSize = 60
+			for (i = 0; i < gridSize; ++i)
+				for (j = 0; j < gridSize; ++j)
+					node(
+
+						// Iterations
+						1,
+
+						// X
+						gridSize * j / 5,
+
+						// Y
+						gridSize * i / 4,
+
+						// Length
+						(j % Math.round(2 + 10 * Math.random()) ? gridSize * .2 : 0),
+
+						// Width
+						2,
+
+						// Branch angle
+						-10 + 20 * Math.random(),
+
+						// Colour
+						Math.round(j * 255 / gridSize),
+						0, 
+						Math.round(i * 255 / gridSize)
+					)
+		</script>
+	</body>
+</html>
