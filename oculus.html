@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<title>Vein</title>
-		<meta http-equiv="refresh" content="5">
+		<meta http-equiv="refresh" content="2">
 		<style>
 			body { background-color: cyan }
 		</style>
@@ -44,7 +44,7 @@
 								x2,
 								y2,
 								length - 2 * Math.random(),
-								width * 1.3,
+								width * 1.1,
 								direction - 10 + 20 * Math.random(),
 								colour + 10
 							)
@@ -81,29 +81,31 @@
 			}
 
 			// First node
-			n = new node(
+			const spokes = 30
+			for (i = 0; i < spokes; ++i)
+				node(
 
-				// Iterations
-				20,
+					// Iterations
+					20,
 
-				// X
-				400,
+					// X
+					400,
 
-				// Y
-				0,
+					// Y
+					400,
 
-				// Length
-				40,
+					// Length
+					30,
 
-				// Width
-				2,
+					// Width
+					3 * Math.random(),
 
-				// Branch angle
-				90,
+					// Branch angle
+					10 * Math.random() + i * 360 / spokes,
 
-				// Colour
-				0
-			)
+					// Colour
+					0
+				)
 		</script>
 	</body>
 </html>
