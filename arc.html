@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="refresh" content="2">
+		<style>
+			body { background-color: white }
+		</style>
+	</head>
+
+	<body>
+		<canvas id="myCanvas" width="800" height="800"></canvas>
+
+		<script>
+			var canvas = document.getElementById("myCanvas")
+			var context = canvas.getContext("2d")
+
+			// Node class
+			function node(iteration, x, y, radius, start, end, width, anticlockwise, r, g, b) {
+
+				// Random number wrapper
+				this.jitter = function(v) {
+
+					return (-v + 2 * v * Math.random())
+				}
+
+				// Branch current node
+				this.branch = function() {
+
+					// Radians in a circle
+					const radians = 2 * Math.PI / 360
+
+					context.beginPath();
+					context.arc(
+							x,
+							y,
+							radius,
+							start * radians,
+							end * radians,
+							anticlockwise)
+
+					context.lineWidth = width;
+					context.strokeStyle = "rgb(" + r + ", " + g + ", " + b + ")"
+					context.stroke()
+
+					if (iteration > 0)
+						node(
+
+							--iteration,
+
+							x,
+							y,
+							radius * .99,
+							360 * Math.random(),
+							360 * Math.random(),
+							width * .95,
+							(Math.random() < .5 ? anticlockwise : !anticlockwise),
+							r + 10,
+							g,
+							b
+						)
+				}
+
+				// Branch itself
+				this.branch()
+			}
+
+			// Create first node
+			node(
+
+				// Iterations
+				100,
+
+				// X
+				400,
+
+				// Y
+				350,
+
+				// Radius
+				350,
+
+				// Start angle
+				50,
+
+				// End angle
+				200,
+
+				// Line width
+				7,
+
+				// Anticlockwise
+				false,
+
+				// Colour
+				0,
+				128,
+				128
+			)
+		</script>
+	</body>
+</html>
