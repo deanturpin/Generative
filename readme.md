@@ -27,8 +27,8 @@ See an [animated version](https://rawgit.com/deanturpin/Generative/master/tree.h
 ### Hair
 ![](img/hair.png)
 
-### Vein
-![](img/vein.png)
+### Oculus
+![](img/oculus.png)
 
 ### Vein 2
 ![](img/vein2.png)
