@@ -40,5 +40,5 @@ See an [animated version](https://rawgit.com/deanturpin/Generative/master/tree.h
 ![](img/spirograph.png)
 ![](img/spirograph2.png)
 
-### Arc
-![](img/arc.png)
+### Record
+![](img/record.png
