@@ -4,6 +4,9 @@
 - http://inconvergent.net/
 - http://n-e-r-v-o-u-s.com/
 
+### Record
+![](img/record.png)
+
 ### Tree
 See an [animated version](https://rawgit.com/deanturpin/Generative/master/tree.html).
 
@@ -40,5 +43,3 @@ See an [animated version](https://rawgit.com/deanturpin/Generative/master/tree.h
 ![](img/spirograph.png)
 ![](img/spirograph2.png)
 
-### Record
-![](img/record.png
