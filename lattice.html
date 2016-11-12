@@ -34,20 +34,25 @@
 					// Radians in a circle
 					const radians = 2 * Math.PI / 360
 
+					// console.log(x, y, direction, spread, radius)
+
 					context.beginPath();
 					context.arc(
 							x,
 							y,
-							5,
-							0,
-							2 * Math.PI,
+							10,
+							(green == 255 ? 1 : 0) * Math.PI,
+							(green == 255 ? 2 : 1) * Math.PI,
 							false)
 
 					context.fillStyle = "rgb(" + red + ", " + green + ", " + blue + ")"
 					context.fill()
 
-					x2 = x + 2 * radius * Math.cos(radians * (direction - spread))
-					y2 = y + 2 * radius * Math.sin(radians * (direction - spread))
+					var x2 = Math.round(
+						x + 2 * radius * Math.cos(radians * (direction - spread)))
+
+					var y2 = Math.round(
+						y + 2 * radius * Math.sin(radians * (direction - spread)))
 
 					if (iteration > 0)
 						node(
@@ -57,26 +62,29 @@
 							y2,
 							radius,
 							direction,
-							spread / 4,
-							255,
+							spread, //  / 2,
+							255, // Math.round(red * .9),
 							0,
 							0
 						)
 
-					x2 = x + 2 * radius * Math.cos(radians * (direction + spread))
-					y2 = y + 2 * radius * Math.sin(radians * (direction + spread))
+					var x2 = Math.round(
+						x + 2 * radius * Math.cos(radians * (direction + spread)))
+
+					var y2 = Math.round(
+						y + 2 * radius * Math.sin(radians * (direction + spread)))
 
 					if (iteration > 0)
 						node(
 
 							iteration - 1,
-							x2,
-							y2,
+							x2 - 10 * Math.random(),
+							y2 - 10 * Math.random(),
 							radius,
 							direction,
-							spread / 4,
+							spread, // / 2,
 							0,
-							255,
+							255, // Math.round(green * .9),
 							0
 						)
 				}
@@ -106,15 +114,16 @@
 				180,
 
 				// Spread
-				90,
+				45,
 
 				// Colour
-				0,
-				0,
-				0
+				255,
+				255,
+				255
 			)
 
 			// Create right branch
+			/*
 			node(
 
 				// Iterations
@@ -133,13 +142,14 @@
 				0,
 
 				// Spread
-				90,
+				45,
 
 				// Colour
-				0,
-				0,
-				0
+				255,
+				255,
+				255
 			)
+			*/
 		</script>
 	</body>
 </html>
