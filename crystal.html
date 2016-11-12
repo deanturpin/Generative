@@ -43,6 +43,8 @@
 					// context.fillStyle = "rgb(" + red + ", " + green + ", " + blue + ")"
 					// context.fill()
 
+					radius = radius + this.jitter(15.2)
+
 					if (iteration > 0) {
 
 							x2 = Math.round(
@@ -91,7 +93,7 @@
 								y2,
 								radius,
 								direction - spread,
-								spread,
+								spread + this.jitter(.01),
 								0,
 								255,
 								0
@@ -107,7 +109,7 @@
 			node(
 
 				// Iterations
-				12,
+				7,
 
 				// X
 				canvas.width / 2,
@@ -122,7 +124,7 @@
 				Math.PI,
 
 				// Spread
-				Math.PI / 4,
+				Math.PI / 3,
 
 				// Colour
 				255,

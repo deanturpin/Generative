@@ -41,3 +41,6 @@ See an [animated version](https://rawgit.com/deanturpin/Generative/master/tree.h
 
 ### Spirograph
 ![](img/spirograph.png)
+
+### Crystal
+![](img/crystal.png)
