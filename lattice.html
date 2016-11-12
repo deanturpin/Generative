@@ -32,7 +32,7 @@
 				this.branch = function() {
 
 					// Radians in a circle
-					const radians = 2 * Math.PI / 360
+					// const radians = 2 * Math.PI / 360
 
 					// console.log(x, y, direction, spread, radius)
 
@@ -49,10 +49,10 @@
 					context.fill()
 
 					var x2 = Math.round(
-						x + 2 * radius * Math.cos(radians * (direction - spread)))
+						x + 2 * radius * Math.cos(direction - spread))
 
 					var y2 = Math.round(
-						y + 2 * radius * Math.sin(radians * (direction - spread)))
+						y + 2 * radius * Math.sin(direction - spread))
 
 					if (iteration > 0)
 						node(
@@ -69,10 +69,10 @@
 						)
 
 					var x2 = Math.round(
-						x + 2 * radius * Math.cos(radians * (direction + spread)))
+						x + 2 * radius * Math.cos(direction + spread))
 
 					var y2 = Math.round(
-						y + 2 * radius * Math.sin(radians * (direction + spread)))
+						y + 2 * radius * Math.sin(direction + spread))
 
 					if (iteration > 0)
 						node(
@@ -111,10 +111,10 @@
 				20,
 
 				// Direction
-				180,
+				Math.PI,
 
 				// Spread
-				45,
+				Math.PI / 4,
 
 				// Colour
 				255,
