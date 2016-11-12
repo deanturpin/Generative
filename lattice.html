@@ -1,0 +1,145 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="refresh" content="2">
+	</head>
+
+	<body>
+		<canvas id="myCanvas" width="800" height="800"></canvas>
+
+		<script>
+			// Define canvas
+			var canvas = document.getElementById("myCanvas")
+			var context = canvas.getContext("2d")
+
+			// Fill background
+			context.beginPath();
+			context.rect(0, 0, canvas.width, canvas.height);
+			context.fillStyle = "#999";
+			context.fill();
+
+			// Node class
+			function node(iteration, x, y, radius, direction, spread, 
+			red, green, blue) {
+
+				// Random number wrapper
+				this.jitter = function(v) {
+
+					return (-v + 2 * v * Math.random())
+				}
+
+				// Branch current node
+				this.branch = function() {
+
+					// Radians in a circle
+					const radians = 2 * Math.PI / 360
+
+					context.beginPath();
+					context.arc(
+							x,
+							y,
+							5,
+							0,
+							2 * Math.PI,
+							false)
+
+					context.fillStyle = "rgb(" + red + ", " + green + ", " + blue + ")"
+					context.fill()
+
+					x2 = x + 2 * radius * Math.cos(radians * (direction - spread))
+					y2 = y + 2 * radius * Math.sin(radians * (direction - spread))
+
+					if (iteration > 0)
+						node(
+
+							iteration - 1,
+							x2,
+							y2,
+							radius,
+							direction,
+							spread / 4,
+							255,
+							0,
+							0
+						)
+
+					x2 = x + 2 * radius * Math.cos(radians * (direction + spread))
+					y2 = y + 2 * radius * Math.sin(radians * (direction + spread))
+
+					if (iteration > 0)
+						node(
+
+							iteration - 1,
+							x2,
+							y2,
+							radius,
+							direction,
+							spread / 4,
+							0,
+							255,
+							0
+						)
+				}
+
+				// Branch itself
+				this.branch()
+			}
+
+			const iterations = 7
+
+			// Create left branch
+			node(
+
+				// Iterations
+				iterations,
+
+				// X
+				canvas.width / 2,
+
+				// Y
+				canvas.height / 2,
+
+				// Radius
+				20,
+
+				// Direction
+				180,
+
+				// Spread
+				90,
+
+				// Colour
+				0,
+				0,
+				0
+			)
+
+			// Create right branch
+			node(
+
+				// Iterations
+				iterations,
+
+				// X
+				canvas.width / 2,
+
+				// Y
+				canvas.height / 2,
+
+				// Radius
+				20,
+
+				// Direction
+				0,
+
+				// Spread
+				90,
+
+				// Colour
+				0,
+				0,
+				0
+			)
+		</script>
+	</body>
+</html>
