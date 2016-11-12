@@ -31,10 +31,7 @@
 				// Branch current node
 				this.branch = function() {
 
-					// Radians in a circle
-					// const radians = 2 * Math.PI / 360
-
-					// console.log(x, y, direction, spread, radius)
+					console.log(iteration, x, y)
 
 					context.beginPath();
 					context.arc(
@@ -48,58 +45,39 @@
 					context.fillStyle = "rgb(" + red + ", " + green + ", " + blue + ")"
 					context.fill()
 
-					var x2 = Math.round(
-						x + 2 * radius * Math.cos(direction - spread))
-
-					var y2 = Math.round(
-						y + 2 * radius * Math.sin(direction - spread))
-
 					if (iteration > 0)
-						node(
+						for (i = -1; i <= 1; i += 2) {
 
-							iteration - 1,
-							x2,
-							y2,
-							radius,
-							direction,
-							spread, //  / 2,
-							255, // Math.round(red * .9),
-							0,
-							0
-						)
+							x2 = Math.round(
+									x + 2 * radius * Math.cos(direction + spread * i))
 
-					var x2 = Math.round(
-						x + 2 * radius * Math.cos(direction + spread))
+								y2 = Math.round(
+										y + 2 * radius * Math.sin(direction + spread * i))
 
-					var y2 = Math.round(
-						y + 2 * radius * Math.sin(direction + spread))
+								node(
 
-					if (iteration > 0)
-						node(
-
-							iteration - 1,
-							x2 - 10 * Math.random(),
-							y2 - 10 * Math.random(),
-							radius,
-							direction,
-							spread, // / 2,
-							0,
-							255, // Math.round(green * .9),
-							0
-						)
+									iteration - 1,
+									x2,
+									y2,
+									radius,
+									direction,
+									spread,
+									(i == -1 ? 255 : 0),
+									(i == 1 ? 255 : 0),
+									0
+								)
+						}
 				}
 
 				// Branch itself
 				this.branch()
 			}
 
-			const iterations = 7
-
 			// Create left branch
 			node(
 
 				// Iterations
-				iterations,
+				3,
 
 				// X
 				canvas.width / 2,
@@ -114,42 +92,13 @@
 				Math.PI,
 
 				// Spread
-				Math.PI / 4,
+				Math.PI / 8,
 
 				// Colour
 				255,
 				255,
 				255
 			)
-
-			// Create right branch
-			/*
-			node(
-
-				// Iterations
-				iterations,
-
-				// X
-				canvas.width / 2,
-
-				// Y
-				canvas.height / 2,
-
-				// Radius
-				20,
-
-				// Direction
-				0,
-
-				// Spread
-				45,
-
-				// Colour
-				255,
-				255,
-				255
-			)
-			*/
 		</script>
 	</body>
 </html>
