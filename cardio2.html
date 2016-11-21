@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<!--
+		<meta http-equiv="refresh" content="10">
+		-->
+	</head>
+
+	<body>
+		<canvas id="myCanvas" width="800" height="800"></canvas>
+
+		<script>
+
+			"use strict"
+
+			// Define canvas
+			var canvas = document.getElementById("myCanvas")
+			var context = canvas.getContext("2d")
+
+			// Place in the middle of the canvas
+			const x = canvas.width / 2
+			const y = canvas.height / 2
+			const radius = x * .9
+
+			var draw = function(interval) {
+
+				// Draw dots
+				const iterations = 200
+
+				for (var i = 0; i < iterations; ++i) {
+
+					const x2 = x + radius * Math.cos(2 * Math.PI * i / iterations)
+					const y2 = y + radius * Math.sin(2 * Math.PI * i / iterations)
+
+					const x3 = x + radius * Math.cos(2 * Math.PI * (i * interval) / iterations)
+					const y3 = y + radius * Math.sin(2 * Math.PI * (i * interval) / iterations)
+
+					// Draw the line
+					context.beginPath()
+					context.moveTo(x2, y2)
+					context.lineTo(x3, y3)
+					context.stroke()
+				}
+			}
+
+			var interval = 1
+
+			setInterval(function() {
+
+				context.clearRect(0, 0, canvas.width, canvas.height)
+
+				draw(interval)
+				interval += .025
+
+			}, 1000 / 20)
+
+		</script>
+	</body>
+</html>
