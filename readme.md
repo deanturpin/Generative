@@ -12,6 +12,10 @@ See an [animated version](https://rawgit.com/deanturpin/Generative/master/tree.h
 
 ![](img/tree.png)
 
+### Tree 2
+Central branch is longer than the left and right.
+![](img/tree2.png)
+
 ### Sambucus (elderberry)
 ![](img/sambucus.png)
 
