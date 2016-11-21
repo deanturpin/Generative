@@ -1,9 +1,6 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<!--
-		<meta http-equiv="refresh" content="10">
-		-->
 	</head>
 
 	<body>
@@ -21,19 +18,23 @@
 			const x = canvas.width / 2
 			const y = canvas.height / 2
 			const radius = x * .9
+			const radians = 2 * Math.PI
 
-			var draw = function(interval) {
+			var draw = function(table) {
 
-				// Draw dots
-				const iterations = 200
+				// Modulus
+				const mod = 200
 
-				for (var i = 0; i < iterations; ++i) {
+				// Draw lines
+				for (var i = 0; i < mod; ++i) {
 
-					const x2 = x + radius * Math.cos(2 * Math.PI * i / iterations)
-					const y2 = y + radius * Math.sin(2 * Math.PI * i / iterations)
+					// Start point
+					const x2 = x + radius * Math.cos(radians * i / mod)
+					const y2 = y + radius * Math.sin(radians * i / mod)
 
-					const x3 = x + radius * Math.cos(2 * Math.PI * (i * interval) / iterations)
-					const y3 = y + radius * Math.sin(2 * Math.PI * (i * interval) / iterations)
+					// End point
+					const x3 = x + radius * Math.cos(radians * (i * table) / mod)
+					const y3 = y + radius * Math.sin(radians * (i * table) / mod)
 
 					// Draw the line
 					context.beginPath()
@@ -43,14 +44,17 @@
 				}
 			}
 
-			var interval = 1
+			var table = 1
 
+			// Periodically update screen
 			setInterval(function() {
 
+				// Clear screen
 				context.clearRect(0, 0, canvas.width, canvas.height)
 
-				draw(interval)
-				interval += .025
+				// Draw and increment times table
+				draw(table)
+				table += .025
 
 			}, 1000 / 20)
 
