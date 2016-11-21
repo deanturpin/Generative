@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="refresh" content="2">
+	</head>
+
+	<body>
+		<canvas id="myCanvas" width="800" height="800"></canvas>
+
+		<script>
+			// Define canvas
+			var canvas = document.getElementById("myCanvas")
+			var context = canvas.getContext("2d")
+
+			// Fill background
+			context.beginPath();
+			context.rect(0, 0, canvas.width, canvas.height);
+			context.fillStyle = "#990";
+			context.fill();
+
+			// Place in the middle of the canvas
+			const x = canvas.width / 2
+			const y = canvas.height / 2
+			const radius = x / 2
+
+			// Draw enclosing circle
+			context.beginPath();
+			context.arc(
+					x,
+					y,
+					radius,
+					0,
+					2 * Math.PI,
+					false)
+
+			context.lineWidth = 1
+			context.strokeStyle = "red"
+			context.stroke()
+
+			// Draw dots
+			const iterations = 10
+			for (var i = 0; i < iterations; ++i) {
+
+				x2 = x + radius * Math.cos(2 * Math.PI * i / iterations)
+				y2 = y + radius * Math.sin(2 * Math.PI * i / iterations)
+
+				context.beginPath();
+				context.arc(
+						x2,
+						y2,
+						5,
+						0,
+						2 * Math.PI,
+						false)
+
+				context.lineWidth = 2
+				context.fillStyle = "blue"
+				context.fill()
+			}
+		</script>
+	</body>
+</html>
