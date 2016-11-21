@@ -34,10 +34,13 @@
 					context.strokeStyle = "rgb(" + 255 + ", " + colour + ", " + colour + ")"
 					context.stroke()
 
+					if (iteration > 0) {
+
 						if (Math.random() < .01) {
+
 							node(
 
-								--iteration,
+								iteration - 1,
 								x2,
 								y2,
 								length - 2 * Math.random(),
@@ -50,7 +53,7 @@
 
 							node(
 
-								--iteration,
+								iteration - 1,
 								x2,
 								y2,
 								length + 2 * Math.random(),
@@ -61,7 +64,7 @@
 
 							node(
 
-								--iteration,
+								iteration - 1,
 								x2,
 								y2,
 								length + 2 * Math.random(),
