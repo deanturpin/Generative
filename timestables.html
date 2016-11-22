@@ -1,23 +1,22 @@
 <!DOCTYPE HTML>
 <html>
-	<head>
-	</head>
-
+	<head></head>
 	<body>
-		<canvas id="myCanvas" width="800" height="800"></canvas>
-
+		<canvas id="canvas"></canvas>
 		<script>
 
 			"use strict"
 
 			// Define canvas
-			var canvas = document.getElementById("myCanvas")
+			var canvas = document.getElementById("canvas")
 			var context = canvas.getContext("2d")
+			context.canvas.width = window.innerWidth
+			context.canvas.height = window.innerHeight
 
 			// Place in the middle of the canvas
 			const x = canvas.width / 2
 			const y = canvas.height / 2
-			const radius = x * .9
+			const radius = y * .9
 			const radians = 2 * Math.PI
 
 			var draw = function(table) {
@@ -44,6 +43,7 @@
 				}
 			}
 
+			// Starting table - 1 x ...
 			var table = 1
 
 			// Periodically update screen
