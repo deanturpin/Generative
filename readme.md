@@ -57,7 +57,17 @@ Inspired by [Mathologer](https://t.co/bIaBHG5UqA).
 ![](img/crystal.png)
 
 ## Rendering GIFs
+Capture desktop
+```bash
+recordmydesktop -x 1700 -y 230 --width 1450 --height 1500
+```
+
+Resize and render to animated GIF 
 ```bash
 ffmpeg -ss 2 -i out-15.ogv -r 24 cardio3.gif
 ffmpeg -i cardio3.gif -vf scale=320:-1 cardio3_smaller.gif
 ```
+
+ffmpeg -ss 2 -i -r 24 cardio3.gif
+
+ffmpeg -i cardio3.gif -vf scale=320:-1 cardio3_smaller.gif
