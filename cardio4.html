@@ -1,70 +1,62 @@
 <!DOCTYPE HTML>
-<html>
-	<head>
-	</head>
+<canvas id="canvas"></canvas>
+<script>
 
-	<body>
-		<canvas id="canvas"></canvas>
+	"use strict"
 
-		<script>
+	// Define canvas
+	const canvas = document.getElementById("canvas")
+	const context = canvas.getContext("2d")
 
-			"use strict"
+	// Set to window size
+	context.canvas.width = window.innerWidth
+	context.canvas.height = window.innerHeight
 
-			// Define canvas
-			const canvas = document.getElementById("canvas")
-			const context = canvas.getContext("2d")
+	// Place in the middle of the canvas
+	const x = canvas.width / 2
+	const y = canvas.height / 2
+	const radius = y * .8
+	const radians = 2 * Math.PI
 
-			// Set to window size
-			context.canvas.width = window.innerWidth
-			context.canvas.height = window.innerHeight
+	// Draw a complete screen
+	var draw = function(table) {
 
-			// Place in the middle of the canvas
-			const x = canvas.width / 2
-			const y = canvas.height / 2
-			const radius = y * .8
-			const radians = 2 * Math.PI
+		// Modulus
+		const mod = 2000
 
-			// Draw a complete screen
-			var draw = function(table) {
+		// Draw lines
+		for (var i = 0; i < mod; ++i) {
 
-				// Modulus
-				const mod = 2000
+			// Start point
+			const x2 = x + radius * Math.cos(radians * i / mod)
+			const y2 = y + radius * Math.sin(radians * i / mod)
 
-				// Draw lines
-				for (var i = 0; i < mod; ++i) {
+			// End point
+			const x3 = x + radius * Math.cos(radians * (i * table) / mod)
+			const y3 = y + radius * Math.sin(radians * (i * table * 2.1) / mod)
 
-					// Start point
-					const x2 = x + radius * Math.cos(radians * i / mod)
-					const y2 = y + radius * Math.sin(radians * i / mod)
+			// Draw the line
+			context.beginPath()
+			context.moveTo(x2, y2)
+			context.lineTo(x3, y3)
+			context.lineWidth = .15
+			context.stroke()
+		}
+	}
 
-					// End point
-					const x3 = x + radius * Math.cos(radians * (i * table) / mod)
-					const y3 = y + radius * Math.sin(radians * (i * table * 2.1) / mod)
+	// Starting times table
+	var table = 1
 
-					// Draw the line
-					context.beginPath()
-					context.moveTo(x2, y2)
-					context.lineTo(x3, y3)
-					context.lineWidth = .15
-					context.stroke()
-				}
-			}
+	// Periodically update screen
+	setInterval(function() {
 
-			// Starting times table
-			var table = 1
+		// Clear screen
+		context.clearRect(0, 0, canvas.width, canvas.height)
 
-			// Periodically update screen
-			setInterval(function() {
+		// Draw and increment times table
+		draw(table)
+		table += .025
 
-				// Clear screen
-				context.clearRect(0, 0, canvas.width, canvas.height)
+	}, 1000 / 20)
 
-				// Draw and increment times table
-				draw(table)
-				table += .025
-
-			}, 1000 / 20)
-
-		</script>
-	</body>
-</html>
+</script>
