@@ -1,7 +1,6 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<meta http-equiv="refresh" content="10">
 	</head>
 
 	<body>
@@ -23,7 +22,7 @@
 			var draw = function(interval) {
 
 				// Draw dots
-				const iterations = 20
+				const iterations = 200
 
 				const x2 = x + radius * Math.cos(2 * Math.PI * 0 / iterations)
 				// const y2 = y + radius * Math.sin(2 * Math.PI * 0 / iterations)
@@ -53,9 +52,9 @@
 				context.clearRect(0, 0, canvas.width, canvas.height)
 
 				draw(interval)
-				interval += .05
+				interval += 1.1
 
-			}, 80)
+			}, 1000 / 20)
 
 		</script>
 	</body>
