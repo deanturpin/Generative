@@ -1,18 +1,13 @@
 <!DOCTYPE HTML>
 <html>
-	<head>
-		<meta http-equiv="refresh" content="2">
-		<style>
-			body { background-color: white }
-		</style>
-	</head>
-
+	<head></head>
 	<body>
-		<canvas id="myCanvas" width="800" height="800"></canvas>
-
+		<canvas id="canvas"></canvas>
 		<script>
-			var canvas = document.getElementById("myCanvas")
+			var canvas = document.getElementById("canvas")
 			var context = canvas.getContext("2d")
+			context.canvas.width = window.innerWidth
+			context.canvas.height = window.innerHeight
 
 			// Node class
 			function node(iteration, x, y, length, width, direction, r, g, b) {
@@ -107,8 +102,8 @@
 
 			// Create first node
 			const gridSize = 60
-			for (i = 0; i < gridSize; ++i)
-				for (j = 0; j < gridSize; ++j)
+			for (var i = 0; i < gridSize; ++i)
+				for (var j = 0; j < gridSize; ++j)
 					node(
 
 						// Iterations
