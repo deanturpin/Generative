@@ -21,7 +21,7 @@ Inspired by [Mathologer](https://t.co/bIaBHG5UqA).
 
 ![](img/cardio1.png)
 ![](img/timestables.png)
-![](img/cardio3.png)
+![](img/cardio3.gif)
 
 ### Sambucus (elderberry)
 ![](img/sambucus.png)
@@ -55,3 +55,9 @@ Inspired by [Mathologer](https://t.co/bIaBHG5UqA).
 
 ### Crystal
 ![](img/crystal.png)
+
+## Rendering GIFs
+```bash
+ffmpeg -ss 2 -i out-15.ogv -r 24 cardio3.gif
+ffmpeg -i cardio3.gif -vf scale=320:-1 cardio3_smaller.gif
+```
