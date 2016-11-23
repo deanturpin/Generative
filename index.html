@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+<script>
+
+	"use strict"
+
+	// document.addEventListener( "DOMContentLoaded", ready, false )
+
+	function getScript() {
+
+		var script = document.createElement("script")
+		script.type = "text/javascript"
+
+		const head = document.getElementsByTagName("head")[0]
+		script.src = "js/blah.js"
+
+		var element = head.appendChild(script)
+		element.parentNode.removeChild(element)
+	}
+
+	// Fetch the script on window load
+	window.onload = setInterval(function() { getScript() }, 1000)
+
+</script>
+
+</head>
+
+<body>
+</body>
+
+</html>
