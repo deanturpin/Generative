@@ -1,4 +1,6 @@
 ## Generative alogorithms
+The focus here is on the algorithms *not* platform-independent JavaScript. (JavaScript
+is simply a really convenient means to visualise ideas.)
 
 ### Resources
 - http://inconvergent.net/
