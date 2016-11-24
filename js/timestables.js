@@ -11,6 +11,8 @@ const x = canvas.width / 2
 const y = canvas.height / 2
 
 const modulus = 200
+const increment = .1
+const iterations = modulus / increment
 
 function frame(iteration, table) {
 
@@ -24,7 +26,7 @@ function frame(iteration, table) {
 
 		// Schedule the next frame
 		setTimeout(function() {
-			frame(iteration - 1, table + .02)
+			frame(iteration - 1, table + increment)
 		}, 10)
 	}
 }
@@ -56,4 +58,4 @@ function spoke(count, table) {
 }
 
 // Draw the first frame
-frame(10000, 1)
+frame(iterations + 1, 1)
