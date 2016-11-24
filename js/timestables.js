@@ -3,6 +3,8 @@
 // Define canvas
 var canvas = document.getElementById("canvas")
 var context = canvas.getContext("2d")
+
+// Set canvas to window size
 context.canvas.width = window.innerWidth
 context.canvas.height = window.innerHeight
 
@@ -10,11 +12,16 @@ context.canvas.height = window.innerHeight
 const x = canvas.width / 2
 const y = canvas.height / 2
 
+// Control points around the circle
 const modulus = 200
+
+// Size of increment for each frame
 const increment = .1
+
+// Iterations
 const iterations = modulus / increment
 
-function frame(iteration, table) {
+function frames(iteration, table) {
 
 	if (iteration > 0) {
 
@@ -22,16 +29,14 @@ function frame(iteration, table) {
 		context.clearRect(0, 0, canvas.width, canvas.height)
 
 		// Draw the spokes
-		spoke(modulus, table)
+		spokes(modulus, table)
 
 		// Schedule the next frame
-		setTimeout(function() {
-			frame(iteration - 1, table + increment)
-		}, 10)
+		setTimeout(frames, 10, iteration - 1, table + increment)
 	}
 }
 
-function spoke(count, table) {
+function spokes(count, table) {
 
 	if (count > 0) {
 
@@ -53,9 +58,9 @@ function spoke(count, table) {
 		context.stroke()
 
 		// Next spoke
-		spoke(count - 1, table + 1/modulus)
+		spokes(count - 1, table + 1/modulus)
 	}
 }
 
 // Draw the first frame
-frame(iterations + 1, 1)
+frames(iterations + 1, 1)
