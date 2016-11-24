@@ -4,10 +4,10 @@
 function draw(x, y) {
 
 	// Control points around the circle
-	const modulus = 200
+	// const modulus = 300
 
 	// Size of increment for each frame
-	const increment = .1
+	const increment = .05
 
 	// Iterations
 	const iterations = modulus / increment
