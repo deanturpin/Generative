@@ -2,12 +2,14 @@
 
 onload = function() {
 
+	// Create a canvas element
 	var canvas = document.createElement("canvas")
 	var body = document.getElementsByTagName("body")[0]
+
+	// Add it to the DOM
 	body.appendChild(canvas)
 
 	// Define canvas
-	// var canvas = document.getElementById("canvas")
 	var context = canvas.getContext("2d")
 
 	// Set canvas to window size
@@ -27,7 +29,8 @@ onload = function() {
 	// Iterations
 	const iterations = modulus / increment
 
-	function frames(iteration, table) {
+	// Draw frames
+	function frames(iteration, multiplier) {
 
 		if (iteration > 0) {
 
@@ -35,14 +38,15 @@ onload = function() {
 			context.clearRect(0, 0, canvas.width, canvas.height)
 
 			// Draw the spokes
-			spokes(modulus, table)
+			spokes(modulus, multiplier)
 
 			// Schedule the next frame
-			setTimeout(frames, 10, iteration - 1, table + increment)
+			setTimeout(frames, 10, iteration - 1, multiplier + increment)
 		}
 	}
 
-	function spokes(count, table) {
+	// Draw spokes
+	function spokes(count, multiplier) {
 
 		if (count > 0) {
 
@@ -54,8 +58,8 @@ onload = function() {
 			const y2 = y + radius * Math.sin(radians * count / modulus)
 
 			// End point
-			const x3 = x + radius * Math.cos(radians * (count * table) / modulus)
-			const y3 = y + radius * Math.sin(radians * (count * table) / modulus)
+			const x3 = x + radius * Math.cos(radians * (count * multiplier) / modulus)
+			const y3 = y + radius * Math.sin(radians * (count * multiplier) / modulus)
 
 			// Draw the line
 			context.beginPath()
@@ -64,7 +68,7 @@ onload = function() {
 			context.stroke()
 
 			// Next spoke
-			spokes(count - 1, table + 1/modulus)
+			spokes(count - 1, multiplier + 1/modulus)
 		}
 	}
 
