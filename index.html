@@ -1,12 +1,9 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-
 <script>
 
 	"use strict"
-
-	// document.addEventListener( "DOMContentLoaded", ready, false )
 
 	function getScript() {
 
@@ -14,20 +11,18 @@
 		script.type = "text/javascript"
 
 		const head = document.getElementsByTagName("head")[0]
-		script.src = "js/blah.js"
+		script.src = "js/timestables.js"
 
 		var element = head.appendChild(script)
 		element.parentNode.removeChild(element)
 	}
 
-	// Fetch the script on window load
-	window.onload = setInterval(getScript, 2000)
-
+	// Fetch the script
+	window.onload = getScript
 </script>
 </head>
 
 <body>
 		<canvas id="canvas"></canvas>
 </body>
-
 </html>
