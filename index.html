@@ -1,2 +1,16 @@
 <!DOCTYPE HTML>
 <script type="text/javascript" src="js/timestables.js"></script>
+
+<form>
+<input type="checkbox" id="reload" value="true" checked>reload
+</form>
+
+<script>
+	"use strict"
+
+	setInterval(function () {
+
+		if (document.getElementById("reload").checked === true)
+			window.location.reload()
+	}, 2000)
+</script>

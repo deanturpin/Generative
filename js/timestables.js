@@ -14,7 +14,7 @@ onload = function() {
 
 	// Set canvas to window size
 	context.canvas.width = window.innerWidth
-	context.canvas.height = window.innerHeight
+	context.canvas.height = window.innerHeight - 50
 
 	// Place in the middle of the canvas
 	const x = canvas.width / 2
