@@ -1,11 +1,7 @@
 "use strict"
 
 // Start animation
-function draw(canvas, context) {
-
-	// Find the centre of the canvas
-	const x = canvas.width / 2
-	const y = canvas.height / 2
+function draw(x, y) {
 
 	// Control points around the circle
 	const modulus = 200
@@ -33,10 +29,7 @@ function draw(canvas, context) {
 			const y3 = y + radius * Math.sin(radians * (count * multiplier) / modulus)
 
 			// Draw the line
-			context.beginPath()
-			context.moveTo(x2, y2)
-			context.lineTo(x3, y3)
-			context.stroke()
+			line(x2, y2, x3, y3)
 
 			// Next spoke
 			spokes(count - 1, multiplier + 1 / modulus)
