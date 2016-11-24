@@ -1,28 +1,2 @@
 <!DOCTYPE HTML>
-<html>
-<head>
-<script>
-
-	"use strict"
-
-	function getScript() {
-
-		var script = document.createElement("script")
-		script.type = "text/javascript"
-
-		const head = document.getElementsByTagName("head")[0]
-		script.src = "js/timestables.js"
-
-		var element = head.appendChild(script)
-		element.parentNode.removeChild(element)
-	}
-
-	// Fetch the script
-	window.onload = getScript
-</script>
-</head>
-
-<body>
-		<canvas id="canvas"></canvas>
-</body>
-</html>
+<script type="text/javascript" src="js/timestables.js"></script>
