@@ -5,48 +5,39 @@ function draw(width, height) {
 
 	clear()
 
-	// Complex number
-	function complex(real, imaginary) {
-
-		this.x = real
-		this.y = imaginary
-
-		this.print = function() {
-			console.log(this.x, this.y)
-		}
-
-		this.square = function() {
-
-			return new complex(
-				this.x * this.x - this.y * this.y,
-				this.y * this.x + this.x * this.y
-			)
-		}
-	}
-
 	// Test if a point is in the Mandelbrot set
-	function member(iteration, x, y) {
+	function member(iteration, r, i) {
 
-		const h = Math.sqrt(x * x + y * y)
+		const z = Math.sqrt(r * r + i * i)
 
-		if (h < 1)
+		if (z < 2)
 			return true
 
 		if (iteration > 0) {
 
-			const p = new complex(x, y)
-			const q = p.square()
-		
-			return member(iteration - 1, p.x + 1, q.y)
+			// First pair
+			const a = r
+			const b = i
+
+			// Second pair
+			const c = r
+			const d = i
+
+			// z^2
+			const r2 = a*c - b*d + 6.5
+			const i2 = (b*c + a*d) * -1
+			
+			return member(iteration - 1, r2, i2)
 		}
 		else
 			return false
 	}
 
-	const resolution = .05
-	const scale = 20
+	const scale = 50
+	const resolution = 1 / scale
 	const range = 5
 	const ticks = 2 * range / resolution
+	const min = ((width / ticks) < (height / ticks) ? width / ticks : height / ticks)
 
 	console.log(resolution, scale, range, ticks)
 	console.log(width, height, width / ticks, height / ticks)
@@ -54,10 +45,10 @@ function draw(width, height) {
 	// Print the points within the set
 	for (var i = -range; i < range; i += resolution)
 		for (var j = -range; j < range; j += resolution)
-			if (!member(5, i, j))
+			if (member(30, i, j))
 				circle(
-					scale * (i + range) * width / ticks,
-					scale * (j + range) * height / ticks, resolution * 10)
+					scale * (i + range) * min,
+					scale * (j + range) * min, resolution * 10)
 
 	// Draw a grid
 	/*
