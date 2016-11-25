@@ -4,7 +4,7 @@
 function draw(x, y) {
 
 	// Control points around the circle
-	// const modulus = 300
+	const modulus = 150
 
 	// Size of increment for each frame
 	const increment = .05
