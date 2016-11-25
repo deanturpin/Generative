@@ -44,17 +44,20 @@ function draw(width, height) {
 	}
 
 	const resolution = .05
-	const scale = 150
+	const scale = 20
+	const range = 5
+	const ticks = 2 * range / resolution
 
-	// Middle of the canvas
-	const x = width / 4
-	const y = height / 4
+	console.log(resolution, scale, range, ticks)
+	console.log(width, height, width / ticks, height / ticks)
 
 	// Print the points within the set
-	for (var i = -2; i < 2; i += resolution)
-		for (var j = -2; j < 2; j += resolution)
-			if (! member(4, i, j))
-				circle(x + (1 + i) * scale, y + (1 + j) * scale, resolution * 25)
+	for (var i = -range; i < range; i += resolution)
+		for (var j = -range; j < range; j += resolution)
+			if (!member(5, i, j))
+				circle(
+					scale * (i + range) * width / ticks,
+					scale * (j + range) * height / ticks, resolution * 10)
 
 	// Draw a grid
 	/*
