@@ -3,7 +3,7 @@
 // Start animation
 function draw(width, height) {
 
-	console.log(new Date)
+	clear()
 
 	// Complex number
 	function complex(real, imaginary) {
@@ -14,16 +14,47 @@ function draw(width, height) {
 		this.print = function() {
 			console.log(this.x, this.y)
 		}
+
+		this.square = function() {
+
+			return new complex(
+				this.x * this.x - this.y * this.y,
+				this.y * this.x + this.x * this.y
+			)
+		}
 	}
 
-	// Print the grid
-	for (var i = 0; i < width; i += 5)
-		for (var j = 0; j < width; j += 5)
-			circle(i, j, 1)
+	// Test if a point is in the Mandelbrot set
+	function member(iteration, x, y) {
 
-	// Just do a single point
-	var p = new complex(0, 0)
-	p.print()
+		const h = Math.sqrt(x * x + y * y)
+
+		if (h < 1)
+			return true
+
+		if (iteration > 0) {
+
+			const p = new complex(x, y)
+			const q = p.square()
+		
+			return member(iteration - 1, p.x + 1, q.y)
+		}
+		else
+			return false
+	}
+
+	const resolution = .05
+	const scale = 150
+
+	// Middle of the canvas
+	const x = width / 4
+	const y = height / 4
+
+	// Print the points within the set
+	for (var i = -2; i < 2; i += resolution)
+		for (var j = -2; j < 2; j += resolution)
+			if (! member(4, i, j))
+				circle(x + (1 + i) * scale, y + (1 + j) * scale, resolution * 25)
 
 	// Draw a grid
 	/*
