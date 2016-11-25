@@ -3,9 +3,27 @@
 // Start animation
 function draw(width, height) {
 
+	console.log(new Date)
+
+	// Complex number
+	function complex(real, imaginary) {
+
+		this.x = real
+		this.y = imaginary
+
+		this.print = function() {
+			console.log(this.x, this.y)
+		}
+	}
+
+	// Print the grid
 	for (var i = 0; i < width; i += 5)
 		for (var j = 0; j < width; j += 5)
 			circle(i, j, 1)
+
+	// Just do a single point
+	var p = new complex(0, 0)
+	p.print()
 
 	// Draw a grid
 	/*
