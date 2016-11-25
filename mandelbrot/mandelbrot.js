@@ -3,6 +3,22 @@
 // Start animation
 function draw(width, height) {
 
+	// Draw a grid
+	function grid(x, y, size) {
+
+		circle(x * 20, y * 20, 5)
+
+		if (x < size) grid(x + 1, y, size)
+		else if (y < size) {
+
+			x = 0
+			grid(x, y + 1, size)
+		}
+	}
+
+	grid(0, 0, 4)
+
+	/*
 	const x1 = width / 2
 	const y1 = height / 2
 
@@ -56,4 +72,5 @@ function draw(width, height) {
 
 	// Draw the first frame
 	frames(iterations + 1, 1)
+	*/
 }

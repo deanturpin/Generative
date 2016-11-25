@@ -25,7 +25,7 @@
 	// Radians in a circle
 	const radians = 2 * Math.PI
 
-	// Draw a line on the canvas
+	// Draw a line
 	function line(x1, y1, x2, y2) {
 
 		// Draw the line
@@ -33,6 +33,14 @@
 		context.moveTo(x1, y1)
 		context.lineTo(x2, y2)
 		context.stroke()
+	}
+
+	// Draw a circle
+	function circle(x, y, radius) {
+
+		context.beginPath();
+		context.arc(x, y, radius, 0, radians, false) 
+		context.fill()
 	}
 
 	// Clear the canvas
