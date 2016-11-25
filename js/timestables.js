@@ -41,8 +41,7 @@ function draw(x1, y1) {
 
 		if (iteration > 0) {
 
-			// Clear screen
-			context.clearRect(0, 0, canvas.width, canvas.height)
+			clear()
 
 			// Draw the spokes
 			spokes(modulus, multiplier)
