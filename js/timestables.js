@@ -1,7 +1,7 @@
 "use strict"
 
 // Start animation
-function draw(x, y) {
+function draw(x1, y1) {
 
 	// Control points around the circle
 	const modulus = 150
@@ -18,15 +18,15 @@ function draw(x, y) {
 		// Check if we need to do anything
 		if (count > 0) {
 
-			const radius = y * .9
+			const radius = y1 * .9
 
 			// Start point - on the perimeter
-			const x2 = x + radius * Math.cos(radians * count / modulus)
-			const y2 = y + radius * Math.sin(radians * count / modulus)
+			const x2 = x1 + radius * Math.cos(radians * count / modulus)
+			const y2 = y1 + radius * Math.sin(radians * count / modulus)
 
 			// End point - a bit further around the perimeter
-			const x3 = x + radius * Math.cos(radians * (count * multiplier) / modulus)
-			const y3 = y + radius * Math.sin(radians * (count * multiplier) / modulus)
+			const x3 = x1 + radius * Math.cos(radians * (count * multiplier) / modulus)
+			const y3 = y1 + radius * Math.sin(radians * (count * multiplier) / modulus)
 
 			// Draw the line
 			line(x2, y2, x3, y3)

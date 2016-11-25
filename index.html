@@ -2,7 +2,7 @@
 <script type="text/javascript" src="js/timestables.js"></script>
 
 <form style="float: right">
-<input type="checkbox" id="reload" value="true" checked>reload<br>
+<input type="checkbox" id="reload" value="false" checked>reload<br>
 </form>
 
 <script>
@@ -18,7 +18,7 @@
 	// Define canvas
 	var context = canvas.getContext("2d")
 
-	// Set canvas to window size
+	// Set canvas to window size (less a bit for the reload checkbox)
 	context.canvas.width = window.innerWidth
 	context.canvas.height = window.innerHeight - 50
 
@@ -26,6 +26,7 @@
 	const radians = 2 * Math.PI
 
 	// Draw a line on the canvas
+	// Used by draw()
 	function line(x1, y1, x2, y2) {
 
 		// Draw the line
@@ -38,14 +39,10 @@
 	// Start animation at the centre of the canvas
 	draw(canvas.width / 2, canvas.height / 2)
 
-	// Periodically check the controls
+	// Periodically check reload checkbox state
 	setInterval(function () {
 
 		if (document.getElementById("reload").checked === true)
 			window.location.reload()
-
-		// console.log(document.getElementById("modulus").value)
-		modulus = document.getElementById("modulus").value
-
 	}, 2000)
 </script>
