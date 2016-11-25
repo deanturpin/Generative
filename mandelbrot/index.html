@@ -19,7 +19,7 @@
 	var context = canvas.getContext("2d")
 
 	// Set canvas to window size (less a bit for the reload checkbox)
-	context.canvas.width = window.innerWidth
+	context.canvas.width = window.innerWidth - 25
 	context.canvas.height = window.innerHeight - 50
 
 	// Radians in a circle
@@ -56,5 +56,5 @@
 
 		if (document.getElementById("reload").checked === true)
 			window.location.reload()
-	}, 2000)
+	}, 1000)
 </script>

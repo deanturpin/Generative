@@ -3,10 +3,15 @@
 // Start animation
 function draw(width, height) {
 
+	for (var i = 0; i < width; i += 5)
+		for (var j = 0; j < width; j += 5)
+			circle(i, j, 1)
+
 	// Draw a grid
+	/*
 	function grid(x, y, size) {
 
-		circle(x * 20, y * 20, 5)
+		circle(x * width / size, y * height / size, 2)
 
 		if (x < size) grid(x + 1, y, size)
 		else if (y < size) {
@@ -15,8 +20,9 @@ function draw(width, height) {
 			grid(x, y + 1, size)
 		}
 	}
+	*/
 
-	grid(0, 0, 4)
+	// grid(0, 0, 80)
 
 	/*
 	const x1 = width / 2
