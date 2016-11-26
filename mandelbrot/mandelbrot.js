@@ -6,49 +6,64 @@ function draw(width, height) {
 	clear()
 
 	// Test if a point is in the Mandelbrot set
-	function member(iteration, r, i) {
+	function member(e, r, i, c) {
 
-		const z = Math.sqrt(r * r + i * i)
+		if (c > 4)
+			return e
 
-		if (z < 2)
-			return true
+		if (e > 0) {
 
-		if (iteration > 0) {
-
-			// First pair
-			const a = r
-			const b = i
-
-			// Second pair
-			const c = r
-			const d = i
-
-			// z^2
-			const r2 = a*c - b*d + 6.5
-			const i2 = (b*c + a*d) * -1
-			
-			return member(iteration - 1, r2, i2)
+			const c = r*r + i*i
+			return member(e - 1, r + c, i, c)
 		}
-		else
-			return false
+
+		return e
 	}
 
-	const scale = 50
-	const resolution = 1 / scale
-	const range = 5
-	const ticks = 2 * range / resolution
-	const min = ((width / ticks) < (height / ticks) ? width / ticks : height / ticks)
+	const grid = 100
+	const resolution = .1
 
-	console.log(resolution, scale, range, ticks)
-	console.log(width, height, width / ticks, height / ticks)
+	const iMin = -4
+	const iMax = 4
+	const jMin = -3
+	const jMax = 3
 
 	// Print the points within the set
-	for (var i = -range; i < range; i += resolution)
-		for (var j = -range; j < range; j += resolution)
-			if (member(30, i, j))
-				circle(
-					scale * (i + range) * min,
-					scale * (j + range) * min, resolution * 10)
+	for (var i = iMin; i < iMax; i += resolution)
+		for (var j = jMin; j < jMax; j += resolution) {
+			
+			const e = member(3, i, j)
+
+			var r = 0
+			var g = 0
+			var b = 0
+
+			if (e === 0) {
+				r = 255
+				g = 0
+				b = 0
+			}
+			else if (e === 1) {
+				r = 0
+				g = 255
+				b = 0
+			}
+			else if (e === 2) {
+				r = 0
+				g = 0
+				b = 255
+			}
+
+			// console.log("circle", r, g, b)
+			circle(
+				(i - iMin) * grid,
+				(j - jMin) * grid,
+				2,
+				r,
+				g,
+				b
+				)
+			}
 
 	// Draw a grid
 	/*

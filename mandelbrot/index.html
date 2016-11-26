@@ -36,10 +36,11 @@
 	}
 
 	// Draw a circle
-	function circle(x, y, radius) {
+	function circle(x, y, radius, r, g, b) {
 
 		context.beginPath();
 		context.arc(x, y, radius, 0, radians, false) 
+		context.fillStyle = "rgb(" + r + ", " + g + "," + b + ")"
 		context.fill()
 	}
 
