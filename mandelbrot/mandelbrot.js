@@ -23,7 +23,7 @@ function draw(width, height) {
 	const grid = 100
 	const resolution = .05
 
-	const iMin = -2.3
+	const iMin = -4
 	const iMax = 4
 	const jMin = -2
 	const jMax = 2
@@ -32,26 +32,23 @@ function draw(width, height) {
 	for (var i = iMin; i < iMax; i += resolution)
 		for (var j = jMin; j < jMax; j += resolution) {
 		
-			const iterations = 10
+			const iterations = 3
 			const e = member(iterations, i, j)
 
 			var r = 0
 			var g = 0
 			var b = 0
 
-			if (e === 0) {
-				r = 255
-				g = 0
-				b = 0
+			if (e > iterations - 3) {
+				g = 128
+				b = 128
 			}
-			else if (e === 1) {
-				r = 0
+			else if (e > iterations / 2) {
 				g = 255
-				b = 0
+				b = 255
 			}
-			else if (e === 2) {
-				r = 0
-				g = 0
+			else if (e > iterations / 3) {
+				g = 128
 				b = 255
 			}
 
