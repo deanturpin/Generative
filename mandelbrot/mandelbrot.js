@@ -8,20 +8,20 @@ function draw(width, height) {
 	// Test if a point is in the Mandelbrot set
 	function member(e, zr, zi, cr, ci) {
 
+		// Check if we're outside the set
 		if ((zr*zr + zi*zi) > 4)
 			return e
 
-		// (z + zi)^2 = ac + bci + adi + bidi
-
+		// Otherwise keep going
 		if (e > 0) {
 
-			// const c = r*r + i*i
 			const zr2 = zr*zr + zi*zi*-1 + cr
 			const zi2 = zi*zr + zr*zi + ci
 
 			return member(e - 1, zr2, zi2, cr, ci)
 		}
 
+		// Point is in the set
 		return e
 	}
 
@@ -40,87 +40,14 @@ function draw(width, height) {
 			const iterations = 20
 			const e = member(iterations, i, j, i, j)
 
-			var r = 0
-			var g = 0
-			var b = 0
-
-			if (e > iterations - 3) {
-				g = 128
-				b = 128
-			}
-			else if (e > iterations / 2) {
-				g = 255
-				b = 255
-			}
-			else if (e > iterations / 3) {
-				g = 128
-				b = 255
-			}
-
 			// Draw a point
 			circle(
 				(i - iMin) * grid,
 				(j - jMin) * grid,
 				resolution * grid / 1.5,
-				Math.round(e * 255 / iterations),
-				g,
-				b
+				Math.round(e * 255 / iterations), // red
+				0, // green
+				0 // blue
 				)
 			}
-
-	/*
-	const x1 = width / 2
-	const y1 = height / 2
-
-	// Control points around the circle
-	const modulus = 150
-
-	// Size of increment for each frame
-	const increment = .05
-
-	// Iterations
-	const iterations = modulus / increment
-
-	// Draw spokes
-	function spokes(count, multiplier) {
-
-		// Check if we need to do anything
-		if (count > 0) {
-
-			const radius = y1 * .9
-
-			// Start point - on the perimeter
-			const x2 = x1 + radius * Math.cos(radians * count / modulus)
-			const y2 = y1 + radius * Math.sin(radians * count / modulus)
-
-			// End point - a bit further around the perimeter
-			const x3 = x1 + radius * Math.cos(radians * (count * multiplier) / modulus)
-			const y3 = y1 + radius * Math.sin(radians * (count * multiplier) / modulus)
-
-			// Draw the line
-			line(x2, y2, x3, y3)
-
-			// Next spoke
-			spokes(count - 1, multiplier + 1 / modulus)
-		}
-	}
-
-	// Draw frames
-	function frames(iteration, multiplier) {
-
-		if (iteration > 0) {
-
-			clear()
-
-			// Draw the spokes
-			spokes(modulus, multiplier)
-
-			// Schedule the next frame
-			setTimeout(frames, 10, iteration - 1, multiplier + increment)
-		}
-	}
-
-	// Draw the first frame
-	frames(iterations + 1, 1)
-	*/
 }
