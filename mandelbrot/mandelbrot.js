@@ -21,18 +21,19 @@ function draw(width, height) {
 	}
 
 	const grid = 100
-	const resolution = .1
+	const resolution = .05
 
-	const iMin = -4
+	const iMin = -2.3
 	const iMax = 4
-	const jMin = -3
-	const jMax = 3
+	const jMin = -2
+	const jMax = 2
 
 	// Print the points within the set
 	for (var i = iMin; i < iMax; i += resolution)
 		for (var j = jMin; j < jMax; j += resolution) {
-			
-			const e = member(3, i, j)
+		
+			const iterations = 10
+			const e = member(iterations, i, j)
 
 			var r = 0
 			var g = 0
@@ -54,33 +55,16 @@ function draw(width, height) {
 				b = 255
 			}
 
-			// console.log("circle", r, g, b)
+			// Draw a point
 			circle(
 				(i - iMin) * grid,
 				(j - jMin) * grid,
-				2,
-				r,
+				resolution * grid / 2,
+				Math.round(e * 255 / iterations),
 				g,
 				b
 				)
 			}
-
-	// Draw a grid
-	/*
-	function grid(x, y, size) {
-
-		circle(x * width / size, y * height / size, 2)
-
-		if (x < size) grid(x + 1, y, size)
-		else if (y < size) {
-
-			x = 0
-			grid(x, y + 1, size)
-		}
-	}
-	*/
-
-	// grid(0, 0, 80)
 
 	/*
 	const x1 = width / 2
