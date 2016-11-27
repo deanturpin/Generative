@@ -28,7 +28,7 @@ function draw(width, height) {
 		}
 
 		const grid = height / 2.6
-		const resolution = .007
+		const resolution = .02
 
 		const iMin = -2.1
 		const iMax = .8
