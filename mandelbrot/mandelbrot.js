@@ -17,8 +17,8 @@ function draw(width, height) {
 			// Otherwise keep going
 			if (e > 0) {
 
-				const zr2 = zr * zr + zi*zi*-1 + cr
-				const zi2 = zi*zr + zr*zi + ci
+				const zr2 = zr * zr + zi * zi * -1 + cr
+				const zi2 = zi * zr + zr * zi + ci
 
 				return member(e - 1, zr2, zi2, cr, ci)
 			}
