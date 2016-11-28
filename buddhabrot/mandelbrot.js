@@ -36,10 +36,10 @@ function draw(width, height) {
 		}
 
 		const grid = height / 2.6
-		const resolution = .02
+		const resolution = .005
 
-		const iMin = -2.1
-		const iMax = .8
+		const iMin = -2
+		const iMax = 3 
 		const jMin = -1.3
 		const jMax = 1.3
 
@@ -62,8 +62,8 @@ function draw(width, height) {
 						circle(
 							(escapeI[k] - jMin) * grid,
 							(escapeR[k] - iMin) * grid,
-							resolution * grid / 1.5,
-							0, // Math.round(e * 255 / iterations),
+							1,
+							0,
 							0,
 							0
 						)
