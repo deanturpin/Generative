@@ -1,9 +1,39 @@
 "use strict"
 
-// Start animation
-function draw(width, height) {
+console.log(new Date)
 
-	function mandelbrot(iterations) {
+onload = function() {
+
+	// Create a canvas element
+	var canvas = document.createElement("canvas")
+	var body = document.getElementsByTagName("body")[0]
+
+	// Add it to the DOM
+	body.appendChild(canvas)
+
+	// Define canvas
+	var context = canvas.getContext("2d")
+
+	// Set canvas size
+	context.canvas.width = 20
+	context.canvas.height = 20
+
+	// Radians in a circle
+	const radians = 2 * Math.PI
+
+	function pixel(x, y, s, r, g, b) {
+
+		context.fillStyle = "rgb(" + r + ", " + g + "," + b + ")"
+		context.fill(x, y, s, s)
+	}
+
+	// Clear the canvas
+	function clear() {
+		context.clearRect(0, 0, canvas.width, canvas.height)
+	}
+
+	/*
+	function brot(iterations) {
 
 		console.log("iterations", iterations)
 
@@ -57,9 +87,9 @@ function draw(width, height) {
 				// Draw a point using the iterations before exiting the set as the colour
 
 				// If it's an escape path plot each point
-				if (e > 0)
+				// if (e > 0)
 					for(var k = 0; k < escapeR.length; ++k) 
-						circle(
+						pixel(
 							(escapeI[k] - jMin) * grid,
 							(escapeR[k] - iMin) * grid,
 							1,
@@ -70,5 +100,7 @@ function draw(width, height) {
 		}	
 	}
 
-	mandelbrot(10)
+	brot(10)
+
+	*/
 }
