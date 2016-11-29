@@ -15,9 +15,11 @@ onload = function() {
 	var context = canvas.getContext("2d")
 
 	// Set canvas size
-	const scale = 4
-	const width = 50
-	const height = 50
+	const scale = 1
+	const width = 400
+	const height = 400
+	const zoom = 200
+	const iterations = 20
 	context.canvas.width = width * scale
 	context.canvas.height = height * scale
 
@@ -38,54 +40,51 @@ onload = function() {
 		y: {min: -1, max: 1},
 	}
 
-	// console.log(limit.x)
-
 	// Draw the 'brot
-	function brot(iterations) {
+	function brot() {
 
 		// Clear the canvas`
 		context.clearRect(0, 0, canvas.width, canvas.height)
 
 		// Test if point is a member of the set
-		function member(cr, ci, iterations) {
+		function member(zr, zi, iterations) {
 
-			var zr = 0
-			var zi = 0
+			var cr = zr
+			var ci = zi
 
 			for (var i = 0; i < iterations; ++i) {
 
 				// Don't look any further if we've escaped the set
-				if ((cr * cr + ci * ci) > 4) {
+				if ((zr * zr + zi * zi) > 4) {
 
 					console.log("escaped with", iterations - i)
 					return iterations - i
 				}
 
-				var oldcr = cr
-				var oldci = ci
-
 				// Calculate next point
-				cr = zr * zr + zi * zi * -1 + cr
-				ci = zi * zr + zr * zi + ci
+				const zr2 = (zr * zr) + (zi * zi * -1) + cr
+				const zi2 = (zi * zr) + (zr * zi) + ci
 
-				// console.log(zr, zi, oldcr, oldci, i)
+				console.log(zr, zi, zr2, zi2, i)
+
+				zr = zr2
+				zi = zi2
 			}
 
 			return 0
 		}
 
+		console.log = function() {}
+
 		// Test if each element in the bitmap is a member of the set
 		for (var x = 0; x < width; ++x)
-			for (var y = 0; y < height; ++y) {
-
-				const zoom = 20
+			for (var y = 0; y < height; ++y)
 				bitmap[x][y] = member(x / zoom, y / zoom, iterations)
-			}
 
 		// Display 'brot
 		for (var x = 0; x < width; ++x) {
 
-			console.log(bitmap[x])
+			// console.log(bitmap[x])
 
 			for (var y = 0; y < height; ++y) {
 
@@ -98,5 +97,5 @@ onload = function() {
 		}
 	}
 
-	brot(10)
+	brot()
 }
