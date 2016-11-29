@@ -15,11 +15,23 @@ onload = function() {
 	var context = canvas.getContext("2d")
 
 	// Set canvas size
-	const width = context.canvas.width = 20
-	const height = context.canvas.height = 20
+	const width = context.canvas.width = 10
+	const height = context.canvas.height = 5
 
-	// var bitmap[context.canvas.width][context.canvas.height]
+	// Create bitmap
+	var bitmap = new Array(width)
 
+	for (var x = 0; x < width; ++x)
+		bitmap[x] = new Array(height)
+
+	// Initialise bitmap
+	for (var x = 0; x < width; ++x)
+		for (var y = 0; y < height; ++y)
+			bitmap[x][y] = 0
+
+	for (var x = 0; x < width; ++x)
+		console.log(bitmap[x])
+	
 	// Draw the 'brot
 	function brot(iterations) {
 
