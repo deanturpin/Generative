@@ -15,29 +15,18 @@ onload = function() {
 	var context = canvas.getContext("2d")
 
 	// Set canvas size
-	context.canvas.width = 20
-	context.canvas.height = 20
+	const width = context.canvas.width = 20
+	const height = context.canvas.height = 20
 
-	// Radians in a circle
-	const radians = 2 * Math.PI
+	// var bitmap[context.canvas.width][context.canvas.height]
 
-	function pixel(x, y, s, r, g, b) {
-
-		context.fillStyle = "rgb(" + r + ", " + g + "," + b + ")"
-		context.fill(x, y, s, s)
-	}
-
-	// Clear the canvas
-	function clear() {
-		context.clearRect(0, 0, canvas.width, canvas.height)
-	}
-
-	/*
+	// Draw the 'brot
 	function brot(iterations) {
 
 		console.log("iterations", iterations)
 
-		clear()
+		// Clear the canvas`
+		context.clearRect(0, 0, canvas.width, canvas.height)
 
 		var escapeR = []
 		var escapeI = []
@@ -65,7 +54,7 @@ onload = function() {
 			return 0
 		}
 
-		const grid = height / 2.6
+		const grid = context.canvas.height / 2.6
 		const resolution = .005
 
 		const iMin = -2
@@ -88,19 +77,19 @@ onload = function() {
 
 				// If it's an escape path plot each point
 				// if (e > 0)
-					for(var k = 0; k < escapeR.length; ++k) 
-						pixel(
-							(escapeI[k] - jMin) * grid,
-							(escapeR[k] - iMin) * grid,
-							1,
-							0,
-							0,
-							0
-						)
+					for(var k = 0; k < escapeR.length; ++k) {
+
+						// context.fillStyle = "rgb(" + r + ", " + g + "," + b + ")"
+						// context.fillStyle = "black"
+						// context.fill(
+							// (escapeI[k] - jMin) * grid,
+							// (escapeR[k] - iMin) * grid,
+							// 1,
+							// 1
+						// )
+					}
 		}	
 	}
 
 	brot(10)
-
-	*/
 }
