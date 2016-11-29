@@ -57,7 +57,7 @@ function draw(width, height) {
 				// Draw a point using the iterations before exiting the set as the colour
 
 				// If it's an escape path plot each point
-				// if (e > 0)
+				if (e > 0)
 					for(var k = 0; k < escapeR.length; ++k) 
 						circle(
 							(escapeI[k] - jMin) * grid,
