@@ -11,12 +11,12 @@ onload = function() {
 	// Add it to the DOM
 	body.appendChild(canvas)
 
-	// Define canvas
+	// Define canvas (view port)
 	var context = canvas.getContext("2d")
 
 	// Set canvas size
-	const width = context.canvas.width = 10
-	const height = context.canvas.height = 5
+	const width = context.canvas.width = 2
+	const height = context.canvas.height = 2
 
 	// Create bitmap
 	var bitmap = new Array(width)
@@ -29,78 +29,57 @@ onload = function() {
 		for (var y = 0; y < height; ++y)
 			bitmap[x][y] = 0
 
-	for (var x = 0; x < width; ++x)
-		console.log(bitmap[x])
-	
+	// 'Brot limits
+	var limit = {
+		x: {min: -2, max: 2},
+		y: {min: -1, max: 1},
+	}
+
+	console.log(limit.x)
+
 	// Draw the 'brot
 	function brot(iterations) {
-
-		console.log("iterations", iterations)
 
 		// Clear the canvas`
 		context.clearRect(0, 0, canvas.width, canvas.height)
 
-		var escapeR = []
-		var escapeI = []
+		// Test if point is a member of the set
+		function member(cr, ci, iterations) {
 
-		// Test if a point is in the Mandelbrot set
-		function member(e, zr, zi, cr, ci) {
+			var zr = 0
+			var zi = 0
 
-			escapeR[escapeR.length] = zr
-			escapeI[escapeI.length] = zi
+			var i
+			for (i = 0; i < iterations; ++i) {
 
-			// Check if we're outside the set
-			if ((zr*zr + zi*zi) > 4)
-				return e
+				// console.log(cr, ci, i)
 
-			// Otherwise keep going
-			if (e > 0) {
+				// Don't look any further if we've escaped the set
+				if ((cr * cr + ci * ci) > 4)
+					break
 
-				const zr2 = zr * zr + zi * zi * -1 + cr
-				const zi2 = zi * zr + zr * zi + ci
-
-				return member(e - 1, zr2, zi2, cr, ci)
+				// Calculate next point
+				cr = zr * zr + zi * zi * -1 + cr
+				ci = zi * zr + zr * zi + ci
 			}
 
-			// Point is in the set
-			return 0
+			return i
 		}
 
-		const grid = context.canvas.height / 2.6
-		const resolution = .005
+		// Test if each element in the bitmap is a member of the set
+		for (var x = 0; x < width; ++x)
+			for (var y = 0; y < height; ++y) {
 
-		const iMin = -2
-		const iMax = 3 
-		const jMin = -1.3
-		const jMax = 1.3
+				const e = member(x, y, 3)
 
-		// Print the points within the set
-		for (var i = iMin; i < iMax; i += resolution)
-			for (var j = jMin; j < jMax; j += resolution) {
+				if (e > 0)
+					bitmap[x][y] = 1
 
-				// Clear down the escape path
-				escapeR = []
-				escapeI = []
-		
-				// Check if this point is a member
-				const e = member(iterations, i, j, i, j)
+				console.log(x, y, (e == 0 ? "in" : "out"))
+			}
 
-				// Draw a point using the iterations before exiting the set as the colour
-
-				// If it's an escape path plot each point
-				// if (e > 0)
-					for(var k = 0; k < escapeR.length; ++k) {
-
-						// context.fillStyle = "rgb(" + r + ", " + g + "," + b + ")"
-						// context.fillStyle = "black"
-						// context.fill(
-							// (escapeI[k] - jMin) * grid,
-							// (escapeR[k] - iMin) * grid,
-							// 1,
-							// 1
-						// )
-					}
-		}	
+		for (var x = 0; x < width; ++x)
+			console.log(bitmap[x])
 	}
 
 	brot(10)
