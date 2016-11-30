@@ -16,8 +16,8 @@ onload = function() {
 	const width = window.innerWidth
 	const height = window.innerHeight
 
-	var zoom = 10
-	const iterations = 20
+	var zoom = 100
+	const iterations = 25
 	canvas.width = width
 	canvas.height = height
 
@@ -53,13 +53,8 @@ onload = function() {
 			for (var i = 0; i < iterations; ++i) {
 
 				// Don't look any further if we've escaped the set
-				if ((zr * zr + zi * zi) > 4) {
-
-					// Store the last escapee
-					lastr = zr
-					lastr = zi
+				if ((zr * zr + zi * zi) > 4)
 					return iterations - i
-				}
 
 				// Calculate next point
 				const zr2 = (zr * zr) + (zi * zi * -1) + cr
@@ -77,7 +72,7 @@ onload = function() {
 		for (var x = 0; x < width; ++x)
 			for (var y = 0; y < height; ++y)
 				bitmap[x][y] = member(
-					(x - 1.725*zoom - width / 2) / zoom,
+					(x - 1.72 * zoom - width / 2) / zoom,
 					(y - height / 2) / zoom,
 					iterations)
 
@@ -87,7 +82,6 @@ onload = function() {
 				if (bitmap[x][y] === 0) {
 
 					context.fillStyle = "#f00"
-					// context.fillStyle = "rgb(" + bitmap[x][y] + "0, 0)"
 					context.fillRect(x, y, 1, 1)
 				}
 	}
