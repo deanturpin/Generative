@@ -13,13 +13,13 @@ onload = function() {
 	var context = canvas.getContext("2d")
 
 	// Set canvas size
-	const scale = 1
-	const width = 400
-	const height = 400
+	const width = window.innerWidth
+	const height = window.innerHeight
+
 	var zoom = 10
 	const iterations = 20
-	context.canvas.width = width * scale
-	context.canvas.height = height * scale
+	canvas.width = width
+	canvas.height = height
 
 	// Create bitmap
 	var bitmap = new Array(width)
@@ -33,15 +33,15 @@ onload = function() {
 			bitmap[x][y] = 0
 
 	// 'Brot limits
-	var limit = {
-		x: {min: -2, max: 2},
-		y: {min: -1, max: 1},
-	}
+	// var limit = {
+		// x: {min: -2, max: 2},
+		// y: {min: -1, max: 1},
+	// }
 
 	// Draw the 'brot
 	function brot() {
 
-		// Clear the canvas`
+		// Clear the canvas
 		context.clearRect(0, 0, canvas.width, canvas.height)
 
 		// Test if point is a member of the set
@@ -53,8 +53,13 @@ onload = function() {
 			for (var i = 0; i < iterations; ++i) {
 
 				// Don't look any further if we've escaped the set
-				if ((zr * zr + zi * zi) > 4)
+				if ((zr * zr + zi * zi) > 4) {
+
+					// Store the last escapee
+					lastr = zr
+					lastr = zi
 					return iterations - i
+				}
 
 				// Calculate next point
 				const zr2 = (zr * zr) + (zi * zi * -1) + cr
@@ -72,7 +77,7 @@ onload = function() {
 		for (var x = 0; x < width; ++x)
 			for (var y = 0; y < height; ++y)
 				bitmap[x][y] = member(
-					(x - width / 2) / zoom,
+					(x - 1.725*zoom - width / 2) / zoom,
 					(y - height / 2) / zoom,
 					iterations)
 
@@ -82,14 +87,21 @@ onload = function() {
 				if (bitmap[x][y] === 0) {
 
 					context.fillStyle = "#f00"
-					context.fillRect(x * scale, y * scale, scale, scale)
+					// context.fillStyle = "rgb(" + bitmap[x][y] + "0, 0)"
+					context.fillRect(x, y, 1, 1)
 				}
 	}
 
-	setInterval(function() {
+	var count = 0
+	const timer = setInterval(function() {
+
+		if (++count > 250)
+			clearInterval(timer)
+
+		console.log(count)
 
 		brot()
 		zoom *= 1.05
 
-	}, 50)
+	}, 10)
 }
