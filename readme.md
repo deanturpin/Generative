@@ -1,4 +1,4 @@
-Project parked. Outstanding issues marked as wontfix and closed.
+Not in active development. Outstanding issues marked as wontfix and closed.
 
 ----
 
